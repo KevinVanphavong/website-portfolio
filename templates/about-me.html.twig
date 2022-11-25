@@ -100,13 +100,38 @@
         .picture-profile {
             display: flex;
             flex-direction: column;
+            grid-gap: 1em;
         }
 
         .picture-profile > .picture-placeholder {
             height: 200px;
             width: 200px;
             border-radius: 10px;
+            border: 2px solid whitesmoke;
             background-color: lightgrey;
+            overflow: hidden;
+            box-shadow: 4px 4px 4px 0 rgba(0,0,0, 0.5);
+        }
+
+        .picture-profile > .picture-placeholder > img {
+            width: 110%;
+            height: 100%;
+            object-fit: cover;
+            object-position: right 30%;
+        }
+
+        .my-social-networks {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .my-social-networks > img {
+            height: 2em;
+            transition: all 0.5s;
+        }
+
+        .my-social-networks > img:hover {
+            transform: scale(1.1);
         }
     </style>
 {% endblock %}
@@ -130,11 +155,13 @@
             </div>
         </div>
         <div class="picture-profile">
-            <div class="picture-placeholder"></div>
+            <div class="picture-placeholder">
+                <img src="{{ asset('build/images/profile-picture.jpg') }}" alt="">
+            </div>
             <div class="my-social-networks">
-                <img src="" alt="LINKEDIN">
-                <img src="" alt="INSTAGRAM">
-                <img src="" alt="GMAIL">
+                <img src="{{ asset('build/images/linkedin-logo.png') }}" alt="LINKEDIN">
+                <img src="{{ asset('build/images/instagram-logo.png') }}" alt="INSTAGRAM">
+                <img src="{{ asset('build/images/gmail-logo.png') }}" alt="GMAIL">
             </div>
         </div>
     </section>
