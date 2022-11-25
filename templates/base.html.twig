@@ -14,8 +14,12 @@
 
     </head>
     <body>
-        {% block navbar %}{% endblock %}
+        {% block navbar %}
+            {% include 'includes/_navbar.html.twig' %}
+        {% endblock %}
+
         {% block body %}{% endblock %}
+
         {% block footer %}{% endblock %}
 
         {% block javascripts %}
