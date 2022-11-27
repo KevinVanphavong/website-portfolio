@@ -1,0 +1,114 @@
+{% extends "layout.html.twig" %}
+
+{% block stylesheets %}
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Offside', cursive;
+        }
+
+        body {
+            background-color: #373737;
+            height: 100vh;
+            color: #fdfdfd;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-under-construction-content {
+            position: absolute;
+            background-color: lightgrey;
+            padding: 0.5em 1em;
+            border: 4px solid rgba(173,0,0,1);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        p {
+            font-size: 1.5em;
+            text-transform: capitalize;
+            background: -webkit-linear-gradient(160deg, rgba(29,0,0,1) 0%, rgba(173,0,0,1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .separator {
+            border-radius: 10px;
+            margin: 0.2em;
+            width: 75%;
+            height: 5px;
+            background: linear-gradient(160deg, rgba(173,0,0,1) 0%, rgba(29,0,0,1) 100%);
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="content-under-construction-content">
+        <p>content under construction</p>
+        <div class="separator"></div>
+        <p>coming really soon</p>
+    </div>
+
+    <script>
+        var sign = document.querySelector('.content-under-construction-content')
+        // en unité "deg"
+        var rotateInterval = [315, 360, 1, 45]
+        // en unité "px"
+        var translateXInterval = document.body.offsetWidth
+        // en unité "px"
+        var translateYInterval = document.body.offsetHeight
+
+        function randomInteger(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function randomIntegerBetweenInterval(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function translateSign() {
+            return "translate(" + randomInteger(translateXInterval) + "px," + randomInteger(translateYInterval) + "px)"
+        }
+
+        function rotateSignLeft() {
+            var randomInt = randomIntegerBetweenInterval(rotateInterval[0], rotateInterval[1])
+            return "rotate(" + Math.floor(randomInt) + "deg)"
+        }
+
+        function rotateSignRight() {
+            var randomInt = randomIntegerBetweenInterval(rotateInterval[2], rotateInterval[3])
+            return "rotate(" + Math.floor(randomInt) + "deg)"
+        }
+
+        function stickSignToBody(sign, i) {
+            var newTransform = translateSign() + ' '
+
+            if (i%2 === 0){
+                newTransform += rotateSignRight()
+            } else {
+                newTransform += rotateSignLeft()
+            }
+
+            sign.style.transform = newTransform;
+        }
+
+        for (let i = 0; i < 15; i++) {
+            var duplicateSign = sign.cloneNode(true)
+            document.body.appendChild(duplicateSign)
+            stickSignToBody(duplicateSign, i)
+        }
+
+        var allSigns = document.querySelectorAll('.content-under-construction-content')
+        allSigns[0].remove();
+
+        window.addEventListener('load', function () {
+
+        })
+
+    </script>
+{% endblock %}

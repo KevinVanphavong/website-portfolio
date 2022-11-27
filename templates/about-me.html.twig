@@ -106,7 +106,7 @@
         .picture-profile > .picture-placeholder {
             height: 200px;
             width: 200px;
-            border-radius: 10px;
+            border-radius: 5px;
             border: 2px solid whitesmoke;
             background-color: lightgrey;
             overflow: hidden;
@@ -125,12 +125,12 @@
             justify-content: space-between;
         }
 
-        .my-social-networks > img {
+        .my-social-networks > a > img {
             height: 2em;
             transition: all 0.5s;
         }
 
-        .my-social-networks > img:hover {
+        .my-social-networks > a > img:hover {
             cursor: help;
             transform: scale(1.15);
         }
@@ -160,16 +160,19 @@
                 <img src="{{ asset('build/images/profile-picture.jpg') }}" alt="">
             </div>
             <div class="my-social-networks">
-                <img src="{{ asset('build/images/linkedin-logo.png') }}" alt="LINKEDIN">
-                <img src="{{ asset('build/images/instagram-logo.png') }}" alt="INSTAGRAM">
-                <img src="{{ asset('build/images/gmail-logo.png') }}" alt="GMAIL">
+                <a href="https://www.linkedin.com/in/kevin-vanphavong-0899a2108/">
+                    <img src="{{ asset('build/images/linkedin-logo.png') }}" alt="LINKEDIN" title="https://www.linkedin.com/in/kevin-vanphavong-0899a2108/">
+                </a>
+                <a href="https://www.instagram.com/tse_hao/">
+                    <img src="{{ asset('build/images/instagram-logo.png') }}" alt="INSTAGRAM" title="https://www.instagram.com/tse_hao/">
+                </a>
+                <a href="#">
+                    <img src="{{ asset('build/images/gmail-logo.png') }}" alt="GMAIL" title="vanphavongk45@gmail.com">
+                </a>
             </div>
         </div>
     </section>
     <div class="finger-down-button">
         <p>👇</p>
     </div>
-
-    <script>
-    </script>
 {% endblock %}
