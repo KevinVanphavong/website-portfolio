@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\WorkExperienceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,8 +36,10 @@ class HomepageController extends AbstractController
     /**
      * @Route("/skillset-experiences", name="skillset-experiences")
      */
-    public function indexSkillsetExperiences(): Response
+    public function indexSkillsetExperiences(WorkExperienceRepository $workExperienceRepository): Response
     {
-        return $this->render('skillset-experiences.html.twig');
+        return $this->render('skillset-experiences.html.twig', [
+            'workExperiences' => $workExperienceRepository->findAll()
+        ]);
     }
 }

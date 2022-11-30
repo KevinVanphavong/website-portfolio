@@ -19,60 +19,13 @@
     </style>
 
     SKILLSET & JOB EXPERIENCES
+    <section>
+        {% for wxp in workExperiences %}
+            <div>
+                <p>{{ wxp.title }}</p>
+                <p>{{ wxp.startDate|date("M") }}</p>
+            </div>
+        {% endfor %}
+    </section>
 
 {% endblock %}
-
-
-<script>
-    __________________
-    Sales & Management
-    __________________
-
-    - Intitulé (title) : Bachelor degree in Business Development
-    - Entreprise (company) : ESCEM - Excelia
-    - Poste (position) : student
-    - Date (date): 2014-2017
-    - Lieu (location) : FRANCE - Orleans (45)
-    - Description (desc) :
-
-    - Intitulé (title) : Sales professional
-    - Entreprise (company) : Pum Plastiques
-    - Poste (position) : intern
-    - Date (date): 2016-2017
-    - Lieu (location) : FRANCE - Orleans (45)
-    - Description (desc) :
-
-    - Intitulé (title) : Business developer
-    - Entreprise (company) : Bowling World
-    - Poste (position) : worker
-    - Date (date): 2017-2020
-    - Lieu (location) : FRANCE - Blois (41)
-    - Description (desc) :
-
-    _______________
-    Web Development
-    _______________
-
-    - Intitulé (title) : Degree in Web Development and Web Mobile Development
-    - Entreprise (company) : Wild Code School
-    - Poste (position) : student
-    - Date (date): 2020-2021
-    - Lieu (location) : FRANCE - Orleans (45)
-    - Description (desc) :
-
-    - Intitulé (title) : Bachelor Degree in Web & Technologies
-    - Entreprise (company) : Webtech Institute
-    - Poste (position) : student
-    - Date (date): 2021-2022
-    - Lieu (location) : FRANCE - Lyon (69)
-    - Description (desc) :
-
-    - Intitulé (title) : Master Degree in IT project management
-    - Entreprise (company) : IPI
-    - Poste (position) : student
-    - Date (date): 2021-2022
-    - Lieu (location) : FRANCE - Lyon (69)
-    - Description (desc) :
-
-
-</script>
