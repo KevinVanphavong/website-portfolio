@@ -57,6 +57,11 @@ class WorkExperience
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=CategoryExperience::class, inversedBy="workExperiences")
+     */
+    private $categoryExperience;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +159,18 @@ class WorkExperience
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getCategoryExperience(): ?CategoryExperience
+    {
+        return $this->categoryExperience;
+    }
+
+    public function setCategoryExperience(?CategoryExperience $categoryExperience): self
+    {
+        $this->categoryExperience = $categoryExperience;
 
         return $this;
     }
