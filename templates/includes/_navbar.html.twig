@@ -1,40 +1,32 @@
 {% block navbar %}
-
-     <style>
-         nav {
-             position: fixed;
-             top: 5%;
-             left: 10%;
-             right: 10%;
-             margin: auto;
-             background: linear-gradient(120deg, rgb(70, 70, 70) 50%, rgb(217, 217, 217) 100%);
-             /*background: linear-gradient(120deg, rgb(108, 108, 108) 80%, rgb(217, 217, 217) 100%);*/
-             border-radius: 4px;
-             padding: 0.2em;
-             z-index: 100;
-         }
-         nav > div {
-             background: linear-gradient(120deg, rgb(108, 108, 108) 20%, rgb(37, 37, 37) 100%);
-             /*background-color: #d9d9d9;*/
-             border-radius: 2px;
-             width: 100%;
-             display: flex;
-             justify-content: space-around;
-             padding: 0.5em;
-             /*box-shadow: inset 4px 4px 16px 0 rgb(253 253 253 / 40%);*/
-         }
-        nav > div > a {
-            text-decoration: none;
-             color: whitesmoke;
-        }
-     </style>
-
-
     <nav>
         <div>
+            <span></span>
             <a href="{{ path('about-me') }}">❤</a>
-            <a href="{{ path('skillset-experiences') }}">Skillset / Experiences</a>
+            <a href="{{ path('skillset-experiences') }}">Skillset / XP</a>
             <a href="{{ path('hbo-studio') }}">HBO Studio</a>
         </div>
     </nav>
+
+    <script>
+        const toggleNavbar = document.querySelector('nav > div > span');
+        const navbar = document.querySelector('nav');
+
+        let toggleIndex = 0;
+        toggleNavbar.addEventListener('click', function (){
+
+            if(toggleIndex%2 === 0){
+                navbar.style.transform = "translateX(-90%)";
+                toggleNavbar.style.transform = "rotate(180deg)";
+                console.log('hide the nb')
+            } else {
+                navbar.style.transform = "translateX(0%)";
+                toggleNavbar.style.transform = "rotate(0deg)";
+                console.log('show the nb')
+            }
+
+            toggleIndex++;
+        })
+
+    </script>
 {% endblock %}

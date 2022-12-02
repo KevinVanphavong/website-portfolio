@@ -1,140 +1,8 @@
 {% extends "layout.html.twig" %}
 
 {% block stylesheets %}
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Offside', cursive;
-        }
-
-        body {
-            background-color: #373737;
-            height: 100vh;
-            color: #fdfdfd;
-            display: flex;
-            position: relative
-        }
-
-        .finger-down-button {
-            position: fixed;
-            bottom: 1em;
-            width: 100%;
-            text-align: center;
-            font-size: 1.5em;
-            animation: clickOnIt 3s ease 0s infinite normal none;
-        }
-
-        @keyframes clickOnIt {
-            15% {
-                animation-timing-function: ease-in;
-                opacity: 1;
-                transform: translateY(-30px);
-            }
-
-            24% {
-                opacity: 1;
-            }
-
-            40% {
-                animation-timing-function: ease-in;
-                transform: translateY(-24px);
-            }
-
-            65% {
-                animation-timing-function: ease-in;
-                transform: translateY(-12px);
-            }
-
-            82% {
-                animation-timing-function: ease-in;
-                transform: translateY(-6px);
-            }
-
-            93% {
-                animation-timing-function: ease-in;
-                transform: translateY(-4px);
-            }
-
-            25%,
-            55%,
-            75%,
-            87% {
-                animation-timing-function: ease-out;
-                transform: translateY(0px);
-            }
-
-            100% {
-                animation-timing-function: ease-out;
-                opacity: 1;
-                transform: translateY(0px);
-            }
-        }
-
-        .about-me {
-            margin: auto;
-            display: flex;
-            grid-gap: 4em;
-        }
-
-        .introducing-profile {
-            display: flex;
-            flex-direction: column;
-            grid-gap: 2em;
-        }
-
-        .introducing-profile > .my-introducing-text {
-            display: flex;
-            flex-direction: column;
-            grid-gap: 1em;
-        }
-
-        .learn-more-button {
-            border: 2px solid whitesmoke;
-            border-radius: 10px;
-            padding: 10px;
-            width: fit-content;
-        }
-
-        .picture-profile {
-            display: flex;
-            flex-direction: column;
-            grid-gap: 1em;
-        }
-
-        .picture-profile > .picture-placeholder {
-            height: 200px;
-            width: 200px;
-            border-radius: 5px;
-            border: 2px solid whitesmoke;
-            background-color: lightgrey;
-            overflow: hidden;
-            box-shadow: 4px 4px 4px 0 rgba(0,0,0, 0.5);
-        }
-
-        .picture-profile > .picture-placeholder > img {
-            width: 110%;
-            height: 100%;
-            object-fit: cover;
-            object-position: right 30%;
-        }
-
-        .my-social-networks {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .my-social-networks > a > img {
-            height: 2em;
-            transition: all 0.5s;
-        }
-
-        .my-social-networks > a > img:hover {
-            cursor: help;
-            transform: scale(1.15);
-        }
-    </style>
+    {{ parent() }}
+    {{ encore_entry_link_tags('aboutmeCSS') }}
 {% endblock %}
 
 
@@ -173,6 +41,6 @@
         </div>
     </section>
     <div class="finger-down-button">
-        <p>👇</p>
+        <a href="{{ path('skillset-experiences') }}">👇</a>
     </div>
 {% endblock %}

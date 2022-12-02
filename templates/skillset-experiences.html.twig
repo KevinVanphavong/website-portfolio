@@ -1,31 +1,84 @@
 {% extends "layout.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('skillsetexperienceCSS') }}
+{% endblock %}
+
 {% block body %}
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Offside', cursive;
-        }
-
-        body {
-            background-color: #373737;
-            height: 100vh;
-            color: #fdfdfd;
-            display: flex;
-            position: relative;
-        }
-    </style>
-
-    SKILLSET & JOB EXPERIENCES
-    <section>
-        {% for wxp in workExperiences %}
-            <div>
+    <section class="section-work-experiences section-90-top-90-sides">
+        {% for index, wxp in workExperiences %}
+            <div class="work-experience work-experience-{{ index }}">
                 <p>{{ wxp.title }}</p>
                 <p>{{ wxp.startDate|date("M") }}</p>
+                <p>{{ dump(wxp) }}</p>
             </div>
         {% endfor %}
+
+        <h4>WEB DEVELOPMENT</h4>
+        <div class="fake-cards-slider">
+            {% for i in 0..4 %}
+                <div class="fake-card-work-experience fake-card-work-experience-{{ i }}">
+                    <div class="wrapper-content">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum exercitationem neque similique vel voluptate. Deserunt explicabo fuga id nihil quas quis totam. Accusamus assumenda atque commodi culpa cumque eligendi fugiat id illum, laborum neque nesciunt obcaecati quam quidem quisquam recusandae sint soluta veniam. Ab adipisci aperiam aspernatur assumenda at fugit maiores minus natus repellendus voluptate? Aspernatur, commodi dolores ducimus eaque enim et, illum ipsa ipsum molestias nobis odit pariatur perspiciatis recusandae rem repudiandae sed unde. Aut autem blanditiis delectus incidunt inventore minima obcaecati placeat praesentium unde. Atque culpa dolor est exercitationem maiores minus nemo, officia pariatur quo repellendus reprehenderit vel!
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </section>
 
+    <script>
+
+        var fakeCards = document.querySelectorAll('.fake-card-work-experience');
+        var sliderfakeCard = document.querySelector('.fake-cards-slider').offsetHeight
+        const fakeCardBaseHeight = 5
+        const fakeCardIncrementHeight = 3
+
+        const fakeCardBaseWidth = 20
+        const fakeCardIncrementWidth = 5
+
+        const fakeCardBaseZIndex = 100;
+
+        fakeCards.forEach(function(fakeCard, index = 0){
+            fakeCard.style.bottom = fakeCardBaseHeight + (index*fakeCardIncrementHeight) + '%'
+            fakeCard.style.top = fakeCardBaseHeight + (index*fakeCardIncrementHeight) + '%'
+
+            fakeCard.style.right = fakeCardBaseWidth - (index*fakeCardIncrementWidth) + '%'
+            fakeCard.style.left = fakeCardBaseWidth - (index*fakeCardIncrementWidth) + '%'
+
+            fakeCard.style.zIndex = fakeCardBaseZIndex - index;
+            if(index !== 0){
+                fakeCard.children[0].style.filter = 'blur(4px)';
+            }
+            index++;
+         })
+
+        function checkMediaQuery() {
+            const cardExperience = document.querySelector('.fake-card-work-experience')
+            // If the inner width of the window is greater then 768px
+            if (window.innerWidth < 468) {
+                // Then log this message to the console
+                console.log('Media Query Matched 468!')
+                cardExperience.style.inset = '5% 0%';
+            }
+        }
+
+        // Add a listener for when the window resizes
+        window.addEventListener('load', checkMediaQuery);
+
+        // var allWorkExperiences = document.querySelectorAll('.work-experience');
+        //
+        // function activeSlider() {
+        //
+        //     window.addEventListener('keydown', (event) => {
+        //         // press arrowLeft (37)
+        //         if(event.code === 37 || event.code === 39) {
+        //             console.log(event.code);
+        //         }
+        //
+        //         // press arrowRight (39)
+        //     })
+        // }
+
+    </script>
 {% endblock %}

@@ -1,3 +1,87 @@
-body {
-    background-color: lightgray;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Offside', cursive;
 }
+
+
+body {
+    background-color: #373737;
+    height: 100vh;
+    color: #fdfdfd;
+}
+
+nav {
+    position: fixed;
+    top: 2.5%;
+    left: 10%;
+    right: 10%;
+    margin: auto;
+    background: linear-gradient(120deg, rgb(70, 70, 70) 50%, rgb(217, 217, 217) 100%);
+    border-radius: 4px;
+    padding: 0.2em;
+    z-index: 1000;
+}
+
+nav > div {
+    background: linear-gradient(120deg, rgb(108, 108, 108) 20%, rgb(37, 37, 37) 100%);
+    border-radius: 2px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5em;
+}
+
+nav > div > span {
+    display: none;
+}
+
+nav > div > a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+
+/*Quand l'ecran est inferieur a 1200px*/
+@media screen and (max-width: 1200px) {}
+
+/*Quand l'ecran est inferieur a 768px*/
+@media screen and (max-width: 768px) {
+    /*NAVBAR RESPONSIVE*/
+    nav {
+        top: 1.5%;
+        left: 0;
+        right: auto;
+        transition: 1s ease;
+    }
+
+    nav > div {
+        flex-direction: column;
+        grid-gap: 1em;
+        position: relative;
+    }
+
+    nav > div > span {
+        display: flex;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background: linear-gradient(120deg, rgb(120 120 120) 20%, rgba(0,0,0,1) 100%);
+        border-radius: 50%;
+        top: 5%;
+        right: -15px;
+        color: rgba(243, 243, 243, 0.9);
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: 1s ease;
+    }
+
+    nav > div > span::before {
+        content: '◄';
+    }
+}
+
+/*Quand l'ecran est inferieur a 480px*/
+@media screen and (max-width: 480px) {}

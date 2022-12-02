@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+.content-under-construction-content {
+    position: absolute;
+    background-color: lightgrey;
+    padding: 0.5em 1em;
+    border: 4px solid rgba(173,0,0,1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+p {
+    font-size: 1.5em;
+    text-transform: capitalize;
+    background: -webkit-linear-gradient(160deg, rgba(29,0,0,1) 0%, rgba(173,0,0,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.separator {
+    border-radius: 10px;
+    margin: 0.2em;
+    width: 75%;
+    height: 5px;
+    background: linear-gradient(160deg, rgba(173,0,0,1) 0%, rgba(29,0,0,1) 100%);
+}
