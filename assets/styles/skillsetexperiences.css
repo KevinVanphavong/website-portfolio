@@ -18,6 +18,10 @@ body {
     position: relative;
 }
 
+.fake-card-work-experience:first-child {
+    text-align: initial;
+}
+
 .fake-card-work-experience {
     box-shadow: inset 0 0 14px 0 #525252;
     border-radius: 5px;
@@ -31,18 +35,46 @@ body {
 .fake-card-work-experience > .wrapper-content {
     height: 100%;
     overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
 .work-experience {
     display: none;
 }
 
-@media screen and (max-width: 468px) {
-    .fake-card-work-experience:first-child {
-        inset: 5% 0%;
-    }
-
-    .fake-card-work-experience:not(:first-child) {
-        display: none;
-    }
+.button-slider {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 42.5%;
+    z-index: 200;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid #a5a5a5;
 }
+
+.button-slider-right {
+    background: linear-gradient(120deg, rgb(108, 108, 108) 20%, rgb(37, 37, 37) 100%);
+    right: -25px;
+}
+.button-slider-right::before {
+    content: '►';
+}
+
+.button-slider-left {
+    background: linear-gradient(120deg, rgb(108, 108, 108) 20%, rgb(37, 37, 37) 100%);
+    left: -25px;
+}
+.button-slider-left::before {
+    content: '◄';
+}
+
+/*@media screen and (max-width: 468px) {*/
+/*    .fake-card-work-experience:not(:first-child) {*/
+/*        display: none;*/
+/*    }*/
+/*}*/

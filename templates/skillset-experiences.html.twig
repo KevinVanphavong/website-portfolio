@@ -17,6 +17,8 @@
 
         <h4>WEB DEVELOPMENT</h4>
         <div class="fake-cards-slider">
+            <div class="button-slider button-slider-left"></div>
+            <div class="button-slider button-slider-right"></div>
             {% for i in 0..4 %}
                 <div class="fake-card-work-experience fake-card-work-experience-{{ i }}">
                     <div class="wrapper-content">
@@ -28,57 +30,92 @@
     </section>
 
     <script>
+        // START - DISPLAY SLIDER SCRIPT
+        function displaySliderScript() {
+            let fakeCards = document.querySelectorAll('.fake-card-work-experience');
+            let sliderfakeCard = document.querySelector('.fake-cards-slider').offsetHeight
 
-        var fakeCards = document.querySelectorAll('.fake-card-work-experience');
-        var sliderfakeCard = document.querySelector('.fake-cards-slider').offsetHeight
-        const fakeCardBaseHeight = 5
-        const fakeCardIncrementHeight = 3
+            const fakeCardBaseHeight = 5
+            const fakeCardIncrementHeight = 3
+            const fakeCardBaseWidth = 20
+            const fakeCardIncrementWidth = 5
+            const fakeCardBaseZIndex = 100;
 
-        const fakeCardBaseWidth = 20
-        const fakeCardIncrementWidth = 5
+            fakeCards.forEach(function(fakeCard, index = 0){
+                fakeCard.style.bottom = fakeCardBaseHeight + (index*fakeCardIncrementHeight) + '%'
+                fakeCard.style.top = fakeCardBaseHeight + (index*fakeCardIncrementHeight) + '%'
 
-        const fakeCardBaseZIndex = 100;
+                fakeCard.style.right = fakeCardBaseWidth - (index*fakeCardIncrementWidth) + '%'
+                fakeCard.style.left = fakeCardBaseWidth - (index*fakeCardIncrementWidth) + '%'
 
-        fakeCards.forEach(function(fakeCard, index = 0){
-            fakeCard.style.bottom = fakeCardBaseHeight + (index*fakeCardIncrementHeight) + '%'
-            fakeCard.style.top = fakeCardBaseHeight + (index*fakeCardIncrementHeight) + '%'
+                fakeCard.style.zIndex = fakeCardBaseZIndex - index;
+                if(index !== 0){
+                    fakeCard.children[0].style.filter = 'blur(4px)';
+                }
+                index++;
+             })
 
-            fakeCard.style.right = fakeCardBaseWidth - (index*fakeCardIncrementWidth) + '%'
-            fakeCard.style.left = fakeCardBaseWidth - (index*fakeCardIncrementWidth) + '%'
-
-            fakeCard.style.zIndex = fakeCardBaseZIndex - index;
-            if(index !== 0){
-                fakeCard.children[0].style.filter = 'blur(4px)';
+            function resizeCardExperience() {
+                const cardExperience = document.querySelector('.fake-card-work-experience')
+                if (window.innerWidth < 468) {
+                    cardExperience.style.inset = '5% 0%';
+                }
             }
-            index++;
-         })
-
-        function checkMediaQuery() {
-            const cardExperience = document.querySelector('.fake-card-work-experience')
-            // If the inner width of the window is greater then 768px
-            if (window.innerWidth < 468) {
-                // Then log this message to the console
-                console.log('Media Query Matched 468!')
-                cardExperience.style.inset = '5% 0%';
-            }
+            window.addEventListener('load', resizeCardExperience);
         }
+        displaySliderScript();
+        // END - DISPLAY SLIDER SCRIPT
 
-        // Add a listener for when the window resizes
-        window.addEventListener('load', checkMediaQuery);
+        // START - ACTIVATE SLIDER SCRIPT
+        function activateSliderScript() {
+            let firstCardExperience = document.querySelector('.fake-card-work-experience')
+            let allWorkExperiences = document.querySelectorAll('.work-experience');
 
-        // var allWorkExperiences = document.querySelectorAll('.work-experience');
-        //
-        // function activeSlider() {
-        //
-        //     window.addEventListener('keydown', (event) => {
-        //         // press arrowLeft (37)
-        //         if(event.code === 37 || event.code === 39) {
-        //             console.log(event.code);
-        //         }
-        //
-        //         // press arrowRight (39)
-        //     })
-        // }
+            const firstSliderNumber = 0;
+            const lastSliderNumber = allWorkExperiences.length - 1;
+            let sliderNumberToChange;
 
+            let buttonSliderRight = document.querySelector('.button-slider-right')
+            let buttonSliderLeft = document.querySelector('.button-slider-left')
+
+            sliderNumberToChange = firstSliderNumber;
+            firstCardExperience.innerHTML = allWorkExperiences[sliderNumberToChange].innerHTML
+
+            window.addEventListener('keydown', (event) => {
+                if(event.keyCode === 37) {
+                    sliderNumberToChange -= 1
+                } else if (event.keyCode === 39) {
+                    sliderNumberToChange += 1
+                }
+
+                if(sliderNumberToChange > lastSliderNumber){
+                    sliderNumberToChange = firstSliderNumber
+                } else if (sliderNumberToChange < firstSliderNumber) {
+                    sliderNumberToChange = lastSliderNumber
+                }
+                firstCardExperience.innerHTML = allWorkExperiences[sliderNumberToChange].innerHTML
+            })
+
+            buttonSliderRight.addEventListener('click', function(){
+                sliderNumberToChange += 1
+                if(sliderNumberToChange > lastSliderNumber){
+                    sliderNumberToChange = firstSliderNumber
+                } else if (sliderNumberToChange < firstSliderNumber) {
+                    sliderNumberToChange = lastSliderNumber
+                }
+                firstCardExperience.innerHTML = allWorkExperiences[sliderNumberToChange].innerHTML
+            })
+
+            buttonSliderLeft.addEventListener('click', function(){
+                sliderNumberToChange -= 1
+                if(sliderNumberToChange > lastSliderNumber){
+                    sliderNumberToChange = firstSliderNumber
+                } else if (sliderNumberToChange < firstSliderNumber) {
+                    sliderNumberToChange = lastSliderNumber
+                }
+                firstCardExperience.innerHTML = allWorkExperiences[sliderNumberToChange].innerHTML
+            })
+        }
+        activateSliderScript()
     </script>
 {% endblock %}
