@@ -71,7 +71,8 @@ body {
 
 .about-me {
     width: 100%;
-    margin: 10%;
+    height: 100%;
+    padding: 10%;
     display: flex;
     grid-gap: 4em;
     justify-content: center;
@@ -140,10 +141,6 @@ body {
 
 /*Quand l'ecran est inferieur a 768px*/
 @media screen and (max-width: 768px) {
-    .about-me {
-        flex-direction: column;
-    }
-
     .picture-profile {
         align-items: center;
     }
@@ -151,5 +148,10 @@ body {
 
     .my-social-networks {
         grid-gap: 2em;
+    }
+}
+@media screen and (max-width: 600px) {
+    .about-me {
+        flex-direction: column;
     }
 }

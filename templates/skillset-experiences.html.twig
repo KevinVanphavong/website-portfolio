@@ -3,19 +3,86 @@
 {% block stylesheets %}
     {{ parent() }}
     {{ encore_entry_link_tags('skillsetexperienceCSS') }}
+
+    <style>
+        .work-experience-image {
+            width: 50%;
+            height: 100%;
+            background: red;
+        }
+
+        p {
+            font-size: 0.85em;
+            text-align: initial;
+        }
+
+        .work-experience-content > .first-infos {
+            height: 150px;
+            display: flex;
+            grid-gap: 0.75em;
+        }
+
+        .work-experience-content > .second-infos {
+            margin: 0.75em 0 0 0;
+            line-height: 150%;
+        }
+
+        .work-experience-infos {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .section-category-titles {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .category-title {
+            opacity: 1;
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
     <section class="section-work-experiences section-90-top-90-sides">
+
+
+
         {% for index, wxp in workExperiences %}
             <div class="work-experience work-experience-{{ index }}">
-                <p>{{ wxp.title }}</p>
-                <p>{{ wxp.startDate|date("M") }}</p>
-                <p>{{ dump(wxp) }}</p>
+                <div class="work-experience-content" data-category-id="{{ wxp.categoryExperience.id }}">
+
+                    <div class="first-infos">
+                        <div class="work-experience-image"></div>
+                        <div class="work-experience-infos">
+                            <p>{{ wxp.title }} as {{ '(' ~ wxp.position ~ ')' }}</p>
+                            <p>{{ wxp.company }}</p>
+                            <p>{{ wxp.country ~ ' - ' ~ wxp.city }}</p>
+                            <p>
+                                From {{ wxp.startDate|date("M Y") }}
+                            <br>
+                                To {{ wxp.endDate|date("M Y") }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="second-infos">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur expedita laudantium officiis provident. Consectetur dolores harum repellat. Accusamus assumenda blanditiis culpa delectus exercitationem incidunt iure officiis quibusdam. Aut dolorem ducimus neque. Adipisci deserunt dicta esse et ex fugiat hic, illo iure laudantium nam nesciunt, pariatur porro quas, unde veniam! Culpa fuga illum saepe. Accusantium aliquid autem cumque debitis deserunt dolore doloremque earum eius enim fugiat hic id illo ipsa ipsam ipsum iste iusto labore laborum maxime, molestias mollitia, nesciunt non nulla officiis possimus praesentium quidem recusandae repellat sed similique sint sit soluta velit veritatis vitae voluptates voluptatibus. A quis, soluta!
+                        </p>
+                    </div>
+                </div>
             </div>
         {% endfor %}
 
-        <h4>WEB DEVELOPMENT</h4>
+        <div class="section-category-titles">
+            {% for category in categoryExperiences %}
+                <h4 class="category-title category-title-{{ category.id }}">{{ category.title|upper }}</h4>
+            {% endfor %}
+        </div>
         <div class="fake-cards-slider">
             <div class="button-slider button-slider-left"></div>
             <div class="button-slider button-slider-right"></div>
@@ -27,13 +94,15 @@
                 </div>
             {% endfor %}
         </div>
+
+
+
     </section>
 
     <script>
         // START - DISPLAY SLIDER SCRIPT
         function displaySliderScript() {
             let fakeCards = document.querySelectorAll('.fake-card-work-experience');
-            let sliderfakeCard = document.querySelector('.fake-cards-slider').offsetHeight
 
             const fakeCardBaseHeight = 5
             const fakeCardIncrementHeight = 3
@@ -51,6 +120,9 @@
                 fakeCard.style.zIndex = fakeCardBaseZIndex - index;
                 if(index !== 0){
                     fakeCard.children[0].style.filter = 'blur(4px)';
+                } else {
+                    fakeCard.style.overflow = "scroll";
+                    fakeCard.style.overflowX = "hidden";
                 }
                 index++;
              })
@@ -78,8 +150,11 @@
             let buttonSliderRight = document.querySelector('.button-slider-right')
             let buttonSliderLeft = document.querySelector('.button-slider-left')
 
+            let allCategoryNames = document.querySelectorAll('.category-title');
+
             sliderNumberToChange = firstSliderNumber;
             firstCardExperience.innerHTML = allWorkExperiences[sliderNumberToChange].innerHTML
+            displayTheRightCategoryName(allCategoryNames)
 
             window.addEventListener('keydown', (event) => {
                 if(event.keyCode === 37) {
@@ -94,6 +169,7 @@
                     sliderNumberToChange = lastSliderNumber
                 }
                 firstCardExperience.innerHTML = allWorkExperiences[sliderNumberToChange].innerHTML
+                displayTheRightCategoryName(allCategoryNames)
             })
 
             buttonSliderRight.addEventListener('click', function(){
@@ -104,6 +180,7 @@
                     sliderNumberToChange = lastSliderNumber
                 }
                 firstCardExperience.innerHTML = allWorkExperiences[sliderNumberToChange].innerHTML
+                displayTheRightCategoryName(allCategoryNames)
             })
 
             buttonSliderLeft.addEventListener('click', function(){
@@ -114,8 +191,27 @@
                     sliderNumberToChange = lastSliderNumber
                 }
                 firstCardExperience.innerHTML = allWorkExperiences[sliderNumberToChange].innerHTML
+                displayTheRightCategoryName(allCategoryNames)
             })
+
+
+
         }
         activateSliderScript()
+
+        // START - ACTIVATE THE CATEGORY EXPERIENCE NAME
+        function displayTheRightCategoryName(allCategoryNames){
+            let firstWorkExperience = document.querySelector('.fake-card-work-experience > .work-experience-content');
+            console.log(firstWorkExperience.dataset.categoryId);
+            let categoryIdToFind = firstWorkExperience.dataset.categoryId
+            allCategoryNames.forEach(name => {
+                if(name.classList.contains('category-title-' + categoryIdToFind)){
+                    name.style.opacity = 1;
+                } else {
+                    name.style.opacity = 0;
+                }
+            })
+        }
+        // END - ACTIVATE THE CATEGORY EXPERIENCE NAME
     </script>
 {% endblock %}

@@ -16,7 +16,7 @@ body {
 }
 
 p {
-    font-size: 1.5em;
+    font-size: 0.75em;
     text-transform: capitalize;
     background: -webkit-linear-gradient(160deg, rgba(29,0,0,1) 0%, rgba(173,0,0,1) 100%);
     -webkit-background-clip: text;
