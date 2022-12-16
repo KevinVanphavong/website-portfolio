@@ -9,7 +9,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class WorkExperiencesFixtures extends Fixture implements DependentFixtureInterface
 {
-    private $workExperiencesFixtures = [
+    const WORKEXPFIXTURES = [
         [
             'title' => 'Bachelor degree in Business Development',
             'company' => 'ESCEM - Excelia',
@@ -77,7 +77,7 @@ class WorkExperiencesFixtures extends Fixture implements DependentFixtureInterfa
      */
     public function load(ObjectManager $manager): void
     {
-        foreach ($this->workExperiencesFixtures as $index => $work) {
+        foreach (self::WORKEXPFIXTURES as $index => $work) {
             $startDate = new \DateTime($work['startDate']);
             $endDate = new \DateTime($work['endDate']);
             $workExperience = new WorkExperience();
@@ -90,7 +90,7 @@ class WorkExperiencesFixtures extends Fixture implements DependentFixtureInterfa
             $workExperience->setCity($work['city']);
             $workExperience->setDescription($work['description']);
 
-            if($index%2 === 0){
+            if($index%3 === 0){
                 $workExperience->setCategoryExperience($this->getReference(CategoryExperiencesFixtures::WEB_DEV));
             } else {
                 $workExperience->setCategoryExperience($this->getReference(CategoryExperiencesFixtures::SALES_MNG));
