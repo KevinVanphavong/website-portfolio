@@ -1,0 +1,39 @@
+@import "app.scss";
+
+body {
+  display: flex;
+}
+
+.section-my-profile {
+  width: 100%;
+  height: 100%;
+  margin: 0 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.section-my-profile > h1 {
+  width: fit-content;
+  position: relative;
+  font-size: 2em;
+}
+
+.section-my-profile > h1::before {
+  @include title-underline;
+}
+
+.profile-border {
+  height: 85%;
+  width: 100%;
+  border-radius: $border-radius-on-linear-gradient;
+  padding: 0.2em;
+  @include div-border-gradient(180deg);
+}
+
+.profile {
+  width: 100%;
+  height: 100%;
+  background-color: $section-space-background-color;
+  border-radius: calc($border-radius-on-linear-gradient/2);
+}

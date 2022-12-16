@@ -36,6 +36,8 @@ Encore
     .addEntry('hbostudioCSS', './assets/styles/hbostudio.css')
     .addEntry('skillsetexperienceCSS', './assets/styles/skillsetexperiences.css')
 
+    .addEntry('adminProfileSCSS', './assets/styles/admin/profile.scss')
+
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -72,7 +74,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

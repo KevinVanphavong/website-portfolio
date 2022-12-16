@@ -8,9 +8,10 @@
 
 
 body {
-    background-color: #373737;
     height: 100vh;
+    background-color: #373737;
     color: #fdfdfd;
+    padding: 2em 0;
 }
 
 nav {

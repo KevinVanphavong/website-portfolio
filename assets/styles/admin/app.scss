@@ -1,0 +1,7 @@
+@import "to-import/mixins.scss";
+@import "../layout.scss";
+@import "to-import/_navbar.scss";
+
+body {
+  padding: 2em 0;
+}
