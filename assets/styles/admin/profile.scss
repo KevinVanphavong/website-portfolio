@@ -10,7 +10,7 @@ body {
   margin: 0 4em;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .section-my-profile > h1 {
@@ -24,7 +24,7 @@ body {
 }
 
 .profile-border {
-  height: 85%;
+  height: 90%;
   width: 100%;
   border-radius: $border-radius-on-linear-gradient;
   padding: 0.2em;
@@ -36,4 +36,105 @@ body {
   height: 100%;
   background-color: $section-space-background-color;
   border-radius: calc($border-radius-on-linear-gradient/2);
+  overflow-y: scroll;
+}
+
+// Les champs du formulaires
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+}
+
+.profile-form-inputs {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  grid-gap: 1em;
+}
+
+.profile-form-first-infos {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  grid-gap: 1em;
+}
+
+.profile-form-second-infos {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-gap: 2em;
+}
+
+.profile-form-row {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.25em;
+}
+
+.profile-form-row-birthdate > #profile_birthdate  {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.profile-form-row-birthdate > #profile_birthdate > select {
+  width: 100%
+}
+
+.profile-form-label {
+  color: $black;
+  padding: 0 0 0 0.5em;
+  font-weight: bold;
+}
+
+.profile-form-row > input,
+.profile-form-row > select,
+.profile-form-row > div > select,
+.profile-form-row > textarea {
+  border-radius: $border-radius-on-linear-gradient;
+  padding: 0.5em;
+  border: 2px solid $white;
+}
+
+.profile-form-row > input#profile_profilePicture {
+  border: none;
+}
+
+.profile-form-row-description > textarea {
+  min-height: 200px;
+}
+
+.profile-form-row-profile-picture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-form-show-picture {
+  width: 300px;
+  min-height: 300px;
+  max-height: 500px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid $white;
+  box-shadow: 4px 4px 4px 0 rgb(137 137 137 / 74%);
+}
+
+// Le button submit du formulaire
+.profile-form-submit {
+  padding: 2em 0 0 0;
+}
+
+.btn-submit-profile-form {
+  padding: 0.5em 1em;
+  background: $green;
+  color: $white;
+  border-radius: $border-radius-on-linear-gradient;
+  border: none;
+  cursor: pointer;
 }

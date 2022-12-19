@@ -21,19 +21,19 @@ class ProfileType extends AbstractType
                 'label'          => 'Firstname',
                 'label_attr'     => ['class' => 'profile-form-label'],
                 'attr'           => ['class' => 'profile-form-input', 'placeholder' => 'John'],
-                'row_attr'       => ['class' => 'profile-form-row']
+                'row_attr'       => ['class' => 'profile-form-row profile-form-row-firstname']
             ])
             ->add('lastname', TextType::class, [
                 'label'          => 'Lastname',
                 'label_attr'     => ['class' => 'profile-form-label'],
                 'attr'           => ['class' => 'profile-form-input', 'placeholder' => 'Doe'],
-                'row_attr'       => ['class' => 'profile-form-row']
+                'row_attr'       => ['class' => 'profile-form-row profile-form-row-lastname']
             ])
             ->add('birthdate', BirthdayType::class, [
                 'label'         => 'Birthdate',
                 'label_attr'    => ['class' => 'profile-form-label'],
                 'attr'          => ['class' =>'profile-form-input'],
-                'row_attr'      => ['class' => 'profile-form-row'],
+                'row_attr'      => ['class' => 'profile-form-row profile-form-row-birthdate'],
                 'placeholder' => [
                     'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
                 ],
@@ -42,7 +42,7 @@ class ProfileType extends AbstractType
                 'label'         => 'Sex',
                 'label_attr'    => ['class' => 'profile-form-label'],
                 'attr'          => ['class' =>'profile-form-input'],
-                'row_attr'      => ['class' => 'profile-form-row'],
+                'row_attr'      => ['class' => 'profile-form-row profile-form-row-sex'],
                 'choices'  => [
                     'female' => 'Female',
                     'male' => 'Male',
@@ -52,7 +52,7 @@ class ProfileType extends AbstractType
                 'label'          => 'Current position',
                 'label_attr'     => ['class' => 'profile-form-label'],
                 'attr'           => ['class' => 'profile-form-input'],
-                'row_attr'       => ['class' => 'profile-form-row']
+                'row_attr'       => ['class' => 'profile-form-row profile-form-row-curren-position']
             ])
             ->add('quickDescription', TextareaType::class, [
                 'label'         => 'Quick description',

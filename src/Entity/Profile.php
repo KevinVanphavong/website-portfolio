@@ -50,11 +50,6 @@ class Profile
     private $quickDescription;
 
     /**
-     * @ORM\OneToMany(targetEntity=RelatedSocialNetwork::class, mappedBy="profileUser", orphanRemoval=true)
-     */
-    private $relatedSocialNetworks;
-
-    /**
      * @ORM\OneToOne(targetEntity=ProfilePicture::class, mappedBy="profileUser", cascade={"persist", "remove"})
      */
     private $profilePicture;
@@ -137,36 +132,6 @@ class Profile
     public function setQuickDescription(?string $quickDescription): self
     {
         $this->quickDescription = $quickDescription;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, RelatedSocialNetwork>
-     */
-    public function getRelatedSocialNetworks(): Collection
-    {
-        return $this->relatedSocialNetworks;
-    }
-
-    public function addRelatedSocialNetwork(RelatedSocialNetwork $relatedSocialNetwork): self
-    {
-        if (!$this->relatedSocialNetworks->contains($relatedSocialNetwork)) {
-            $this->relatedSocialNetworks[] = $relatedSocialNetwork;
-            $relatedSocialNetwork->setProfileUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRelatedSocialNetwork(RelatedSocialNetwork $relatedSocialNetwork): self
-    {
-        if ($this->relatedSocialNetworks->removeElement($relatedSocialNetwork)) {
-            // set the owning side to null (unless already changed)
-            if ($relatedSocialNetwork->getProfileUser() === $this) {
-                $relatedSocialNetwork->setProfileUser(null);
-            }
-        }
 
         return $this;
     }

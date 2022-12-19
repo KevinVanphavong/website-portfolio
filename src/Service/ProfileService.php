@@ -6,14 +6,14 @@ use App\Entity\ProfilePicture;
 
 class ProfileService
 {
-    public function saveProfilePictureForm($profileForm, $profile)
+    public function saveProfilePictureForm($profileForm, $profile, $pathFile)
     {
         $profilePicture = $profileForm->get('profilePicture')->getData();
         if ($profilePicture) {
             $coverName = md5(uniqid()) . '.' . $profilePicture->guessExtension();
-            $profilePicture->move($this->getParameter('profile_picture'), $coverName);
+            $profilePicture->move($pathFile, $coverName);
             if ($profile->getProfilePicture()) {
-                unlink($this->getParameter('profile_picture') . '/' . $profile->getProfilePicture()->getName());
+                unlink($pathFile . '/' . $profile->getProfilePicture()->getName());
                 $profile->getProfilePicture()->setName($coverName);
             } else {
                 $profilePicture = new ProfilePicture();

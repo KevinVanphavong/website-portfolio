@@ -47,7 +47,7 @@ class AdminController extends AbstractController
         $profileForm->handleRequest($request);
 
         if($profileForm->isSubmitted() && $profileForm->isValid()) {
-            $this->profileService->saveProfilePictureForm($profileForm, $profile);
+            $this->profileService->saveProfilePictureForm($profileForm, $profile, $this->getParameter('profile_picture'));
 
             $entityManager->flush();
             $this->addFlash('success', 'Les modifications faites à votre soirée ont bien été prises en compte');
