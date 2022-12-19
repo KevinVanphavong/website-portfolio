@@ -54,6 +54,11 @@ class Profile
      */
     private $relatedSocialNetworks;
 
+    /**
+     * @ORM\OneToOne(targetEntity=ProfilePicture::class, mappedBy="profileUser", cascade={"persist", "remove"})
+     */
+    private $profilePicture;
+
     public function __construct()
     {
         $this->relatedSocialNetworks = new ArrayCollection();
@@ -162,6 +167,23 @@ class Profile
                 $relatedSocialNetwork->setProfileUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProfilePicture(): ?ProfilePicture
+    {
+        return $this->profilePicture;
+    }
+
+    public function setProfilePicture(ProfilePicture $profilePicture): self
+    {
+        // set the owning side of the relation if necessary
+        if ($profilePicture->getProfileUser() !== $this) {
+            $profilePicture->setProfileUser($this);
+        }
+
+        $this->profilePicture = $profilePicture;
 
         return $this;
     }

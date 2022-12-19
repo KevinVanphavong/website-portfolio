@@ -12,8 +12,16 @@
             {{ encore_entry_link_tags('appCSS') }}
         {% endblock %}
 
+{#        {% for label, messages in app.flashes %}#}
+{#            {% for message in messages %}#}
+{#                <div class="flash-{{ label }}">#}
+{#                    {{ message }}#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        {% endfor %}#}
     </head>
     <body>
+
         {% block navbar %}
             {% include 'includes/_navbar.html.twig' %}
         {% endblock %}
