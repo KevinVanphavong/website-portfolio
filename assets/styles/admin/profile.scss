@@ -41,6 +41,7 @@ body {
 
 // Les champs du formulaires
 form {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,6 +68,7 @@ form {
   width: 50%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   grid-gap: 2em;
 }

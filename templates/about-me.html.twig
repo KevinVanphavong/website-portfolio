@@ -11,12 +11,13 @@
         <div class="introducing-profile">
             <div class="my-introducing-text">
                 <p>Hello ✌</p>
-                <p>My name is Kevin</p>
-                <p>I'm a student in web development</p>
+                <p>My name is {{ profile.firstname }}</p>
+                <p>I'm a {{ profile.currentPosition }}</p>
                 <p>
-                    Creating my own studio
-                    <br>
-                    As creative studio and brand design
+                    {{ profile.quickDescription }}
+{#                    Creating my own studio#}
+{#                    <br>#}
+{#                    As creative studio and brand design#}
                 </p>
             </div>
             <div class="learn-more-button">
@@ -25,7 +26,7 @@
         </div>
         <div class="picture-profile">
             <div class="picture-placeholder">
-                <img src="{{ asset('build/images/profile-picture.jpg') }}" alt="">
+                <img src="{{ asset('uploads/profile-picture/' ~  profile.profilePicture.name) }}" alt="">
             </div>
             <div class="my-social-networks">
                 <a href="https://www.linkedin.com/in/kevin-vanphavong-0899a2108/">

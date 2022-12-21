@@ -12,15 +12,18 @@
             {{ encore_entry_link_tags('appCSS') }}
         {% endblock %}
 
-{#        {% for label, messages in app.flashes %}#}
-{#            {% for message in messages %}#}
-{#                <div class="flash-{{ label }}">#}
-{#                    {{ message }}#}
-{#                </div>#}
-{#            {% endfor %}#}
-{#        {% endfor %}#}
     </head>
+
     <body>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-message flash-{{ label }}">
+                    <p class="flash-content">
+                        {{ message }}
+                    </p>
+                </div>
+            {% endfor %}
+        {% endfor %}
 
         {% block navbar %}
             {% include 'includes/_navbar.html.twig' %}
@@ -31,7 +34,19 @@
         {% block footer %}{% endblock %}
 
         {% block javascripts %}
-{#            {{ encore_entry_script_tags('app') }}#}
+{#            {{ encore_entry_script_tags('appJS') }}#}
         {% endblock %}
     </body>
+
+    <script>
+        let flashMessage = document.querySelector('.flash-message');
+
+        if(flashMessage) {
+            setTimeout(function () {
+                flashMessage.remove()
+            },
+                3000
+            )
+        }
+    </script>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\CategoryExperienceRepository;
+use App\Repository\ProfileRepository;
 use App\Repository\WorkExperienceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,9 +22,15 @@ class HomepageController extends AbstractController
     /**
      * @Route("/about-me", name="about-me")
      */
-    public function indexAboutMe(): Response
+    public function indexAboutMe( ProfileRepository $profileRepository): Response
     {
-        return $this->render('about-me.html.twig');
+        // A remplacer le profil actuel du compte
+        // $profile => $this->getUser()->getProfile();
+        $profile = $profileRepository->findOneBy(['id' => 1]);
+
+        return $this->render('about-me.html.twig', [
+            'profile' => $profile
+        ]);
     }
 
     /**

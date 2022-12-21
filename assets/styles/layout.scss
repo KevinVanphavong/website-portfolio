@@ -3,12 +3,35 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Offside', cursive;
-  font-size: 14px;
+  font-size: $text-size;
 }
-
 
 body {
   background-color: $body-background;
   height: 100vh;
   color: $white;
+}
+
+.flash-message {
+  @include flash-message;
+}
+
+.flash-success {
+  .flash-content {
+    @include flash-content($green)
+  }
+}
+.flash-alert {
+  .flash-content {
+    @include flash-content($red)
+  }
+}
+
+.flash-content {
+  display: flex;
+  margin: auto;
+  padding: 1em 2em;
+  font-size: $flash-message-size;
+  border-radius: 10px;
+  font-weight: 750;
 }
