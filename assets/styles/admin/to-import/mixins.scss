@@ -11,12 +11,36 @@
   background: $title-underline-gradient;
 }
 
+@mixin header-underline {
+  content: "";
+  position: absolute;
+  top: 75%;
+  left: 3%;
+  right: -3%;
+  height: 5px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, $black 0%, $grey 75%);
+}
+
 @mixin div-border-gradient($degree) {
-  background: linear-gradient($degree, #1D1D1D 33%, #7d7d7d 66%, rgba(236,236,236,0.8) 100%);
+  background: linear-gradient($degree, $black 33%, $grey 66%, rgba($white,0.8) 100%);
 }
 
 @mixin navbar-content-gradient($degree) {
-  background: linear-gradient($degree, rgb(108, 108, 108) 20%, rgb(37, 37, 37) 100%);
+  background: linear-gradient($degree, $grey 20%, $black 100%);
+}
+
+@mixin admin-border-block-content($degree) {
+  border-radius: $border-radius-on-linear-gradient;
+  padding: 0.2em;
+  @include div-border-gradient($degree);
+}
+
+@mixin admin-block-content {
+  width: 100%;
+  height: 100%;
+  background-color: $section-space-background-color;
+  border-radius: calc($border-radius-on-linear-gradient/2);
 }
 
 @mixin flash-message {
@@ -30,4 +54,13 @@
   border: 3px solid $color;
   background-color: lighten($color, 60%);
   color: darken($color, 20%);
+}
+
+@mixin btn-submit-form {
+  padding: 0.5em 1em;
+  background: $green;
+  color: $white;
+  border-radius: $border-radius-on-linear-gradient;
+  border: none;
+  cursor: pointer;
 }

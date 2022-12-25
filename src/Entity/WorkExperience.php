@@ -62,6 +62,11 @@ class WorkExperience
      */
     private $categoryExperience;
 
+    /**
+     * @ORM\OneToOne(targetEntity=WorkExperienceImage::class, mappedBy="workExperience", cascade={"persist", "remove"})
+     */
+    private $image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -171,6 +176,23 @@ class WorkExperience
     public function setCategoryExperience(?CategoryExperience $categoryExperience): self
     {
         $this->categoryExperience = $categoryExperience;
+
+        return $this;
+    }
+
+    public function getImage(): ?WorkExperienceImage
+    {
+        return $this->image;
+    }
+
+    public function setImage(WorkExperienceImage $image): self
+    {
+        // set the owning side of the relation if necessary
+        if ($image->getWorkExperience() !== $this) {
+            $image->setWorkExperience($this);
+        }
+
+        $this->image = $image;
 
         return $this;
     }

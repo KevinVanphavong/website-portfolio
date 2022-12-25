@@ -1,0 +1,180 @@
+@import "app.scss";
+
+body {
+  display: flex;
+}
+
+.section-my-skillset-experiences {
+  width: 100%;
+  margin: 0 4em;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 2em;
+  h2 {
+    width: fit-content;
+    margin: auto;
+    padding: 1em 0;
+    font-size: calc($text-size + 4px);
+    color: $black;
+    position: relative;
+  }
+  h2:before {
+    @include header-underline;
+  }
+}
+
+.section-my-skillset-experiences > h1 {
+  width: fit-content;
+  position: relative;
+  font-size: 2em;
+}
+
+.section-my-skillset-experiences > h1::before {
+  @include title-underline;
+}
+
+.section-content {
+  width: 100%;
+
+  .border-content {
+    flex-grow: 1;
+  }
+}
+
+.section-creation-experiences-and-categories {
+  display: flex;
+  grid-gap: 1em;
+}
+
+.border-content {
+  @include admin-border-block-content(180deg);
+  .content {
+    min-height:300px;
+    @include admin-block-content;
+  }
+}
+
+.btn-submit-category-exp-form,
+.btn-submit-work-exp-form {
+  @include btn-submit-form;
+  width: fit-content;
+  align-self: center;
+}
+
+ form {
+   padding: 1em;
+   display: flex;
+   flex-direction: column;
+   grid-gap: 1em;
+   color: black;
+ }
+
+.section-creation-experiences-and-categories > div:first-of-type {
+  width: 60%;
+}
+
+.section-creation-experiences-and-categories > div:last-of-type {
+  width: 40%;
+}
+
+.category-form-row,
+.experience-form-row {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.5em;
+}
+
+.category-form-row > input,
+.experience-form-row > input,
+.experience-form-row > textarea,
+.experience-form-row > div > select,
+.experience-form-row > select {
+  border-radius: $border-radius-on-linear-gradient;
+  padding: 0.5em;
+  border: 2px solid whitesmoke;
+  width: 100%;
+}
+
+#work_experience_startDate,
+#work_experience_endDate {
+  width: 100%;
+  display: flex;
+  grid-gap: 0.5em;
+}
+
+hr {
+  text-align: center;
+  width: 75%;
+  margin: auto auto 1em;
+}
+
+.index-category-experience {
+  margin: 0 1em;
+  padding: 1em;
+  border-radius: $border-radius-on-linear-gradient;
+  background-color: $white;
+  border: 2px solid $white;
+  display: flex;
+  grid-gap: 0.5em;
+  flex-wrap: wrap;
+}
+.index-category-experience > p {
+  padding: 1em;
+  background: lighten($grey, 30%);
+  color: $black;
+  width: fit-content;
+  border-radius: $border-radius-on-linear-gradient;
+  position: relative;
+  i {
+    position: absolute;
+    top: -15%;
+    right: -5%;
+    border-radius: 50%;
+    color: $red;
+    font-size: 1.2em;
+  }
+}
+
+.work-exp-lines {
+  padding: 2em 1em;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 1.5em;
+}
+
+.work-exp-lines > .work-exp-line > p {
+  color: $black;
+}
+.work-exp-lines > .work-exp-line > p > span {
+  text-decoration: underline;
+}
+
+i.icon {
+  padding: 0.5em;
+  width: 30px;
+  border-radius: $border-radius-on-linear-gradient;
+  text-align: center;
+  background: lighten($grey, 20%);
+
+  &.edit-icon {
+    color: $green;
+  }
+  &.delete-icon {
+    color: $red;
+  }
+
+  &:hover {
+    background: $grey;
+    cursor: pointer;
+    &.edit-icon {
+      color: lighten($green, 15%);
+    }
+    &.delete-icon {
+      color: lighten($red, 15%);
+    }
+  }
+}
+.work-exp-line {
+  display: flex;
+  justify-content: space-between;
+}

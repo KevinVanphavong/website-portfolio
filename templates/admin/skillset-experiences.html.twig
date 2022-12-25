@@ -1,0 +1,67 @@
+{% extends "admin/layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('adminSkillsetexperienceCSS') }}
+{% endblock %}
+
+{% block body %}
+    <section class="section-my-skillset-experiences">
+        <h1>My Skillset & Job Experiences</h1>
+
+        <div class="section-content section-creation-experiences-and-categories">
+            <div class="border-content border-content-new-experience">
+                <div class="content form-content-new-experience">
+                    <h2>CREATE A NEW EXPERIENCE</h2>
+                        {{ include('form/form-experience.html.twig') }}
+                </div>
+            </div>
+
+            <div class="border-content border-content-new-category">
+                <div class="content form-content-new-category">
+                    <h2>CREATE A NEW CATEGORY</h2>
+                        {{ include('form/form-category.html.twig') }}
+                    <hr>
+                        <div class="index-category-experience">
+                            {% for categoryExperience in categoryExperiences %}
+                                <p>
+                                    {{ categoryExperience.title }}
+                                    <i class="fa-solid fa-circle-minus"></i>
+                                </p>
+                            {% endfor %}
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-content section-index-skillset-experiences">
+            <div class="border-content border-content-index-experiences">
+                <div class="content content-index-experiences">
+                    <h2>INDEX EXPERIENCES</h2>
+                        <div class="work-exp-lines">
+                        {% set index = workExperiences|length %}
+                        {% set increment = 0 %}
+                        {% for workExperience in workExperiences %}
+                            {% set number = index-increment %}
+                            <div class="work-exp-line">
+                                <p>
+                                    {{ '#' ~ number ~ ' - ' }} <span>Category</span> : {{ workExperience.categoryExperience.title }}
+                                    <br>
+                                    <span>Title</span> : {{ workExperience.title }}
+                                    <br>
+                                    <span>Company</span> : {{ workExperience.company }}
+                                    <br>
+                                    <span>Period</span> : Still Active
+                                </p>
+                                <div class="icons">
+                                    <i class="fa-regular fa-pen-to-square icon edit-icon"></i>
+                                    <i class="fa-solid fa-trash-can icon delete-icon"></i>
+                                </div>
+                            </div>
+                            {% set increment = increment + 1 %}
+                        {% endfor %}
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
