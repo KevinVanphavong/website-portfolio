@@ -23,10 +23,10 @@
                     <hr>
                         <div class="index-category-experience">
                             {% for categoryExperience in categoryExperiences %}
-                                <p>
+                                <div>
                                     {{ categoryExperience.title }}
-                                    <i class="fa-solid fa-circle-minus"></i>
-                                </p>
+                                    {% include 'form/delete_form/d-form-category.html.twig' %}
+                                </div>
                             {% endfor %}
                         </div>
                 </div>
@@ -53,8 +53,11 @@
                                     <span>Period</span> : Still Active
                                 </p>
                                 <div class="icons">
-                                    <i class="fa-regular fa-pen-to-square icon edit-icon"></i>
-                                    <i class="fa-solid fa-trash-can icon delete-icon"></i>
+                                    <a href="{{ path('edit_work_experience', {'workExperienceId': workExperience.id}) }}">
+                                        <i class="fa-regular fa-pen-to-square icon edit-icon">
+                                        </i>
+                                    </a>
+                                     {% include 'form/delete_form/d-form-experience.html.twig' %}
                                 </div>
                             </div>
                             {% set increment = increment + 1 %}

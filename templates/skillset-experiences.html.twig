@@ -1,62 +1,21 @@
 {% extends "layout.html.twig" %}
 
 {% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('skillsetexperienceCSS') }}
-
-    <style>
-        .work-experience-image {
-            width: 50%;
-            height: 100%;
-            background: red;
-        }
-
-        p {
-            font-size: 0.85em;
-            text-align: initial;
-        }
-
-        .work-experience-content > .first-infos {
-            height: 150px;
-            display: flex;
-            grid-gap: 0.75em;
-        }
-
-        .work-experience-content > .second-infos {
-            margin: 0.75em 0 0 0;
-            line-height: 150%;
-        }
-
-        .work-experience-infos {
-            width: 50%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .section-category-titles {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .category-title {
-            opacity: 1;
-        }
-    </style>
+    {{ encore_entry_link_tags('skillsetexperienceSCSS') }}
 {% endblock %}
 
 {% block body %}
     <section class="section-work-experiences section-90-top-90-sides">
-
-
-
         {% for index, wxp in workExperiences %}
             <div class="work-experience work-experience-{{ index }}">
                 <div class="work-experience-content" data-category-id="{{ wxp.categoryExperience.id }}">
 
                     <div class="first-infos">
-                        <div class="work-experience-image"></div>
+                        {% if wxp.image %}
+                            <img class="work-experience-image" src="{{ asset('uploads/experience-image/' ~ wxp.image.name) }}" alt="">
+                        {% else %}
+                            <div class="work-experience-image"></div>
+                        {% endif %}
                         <div class="work-experience-infos">
                             <p>{{ wxp.title }} as {{ '(' ~ wxp.position ~ ')' }}</p>
                             <p>{{ wxp.company }}</p>
@@ -71,7 +30,7 @@
 
                     <div class="second-infos">
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur expedita laudantium officiis provident. Consectetur dolores harum repellat. Accusamus assumenda blanditiis culpa delectus exercitationem incidunt iure officiis quibusdam. Aut dolorem ducimus neque. Adipisci deserunt dicta esse et ex fugiat hic, illo iure laudantium nam nesciunt, pariatur porro quas, unde veniam! Culpa fuga illum saepe. Accusantium aliquid autem cumque debitis deserunt dolore doloremque earum eius enim fugiat hic id illo ipsa ipsam ipsum iste iusto labore laborum maxime, molestias mollitia, nesciunt non nulla officiis possimus praesentium quidem recusandae repellat sed similique sint sit soluta velit veritatis vitae voluptates voluptatibus. A quis, soluta!
+                            {{ wxp.description }}
                         </p>
                     </div>
                 </div>
@@ -89,7 +48,6 @@
             {% for i in 0..4 %}
                 <div class="fake-card-work-experience fake-card-work-experience-{{ i }}">
                     <div class="wrapper-content">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum exercitationem neque similique vel voluptate. Deserunt explicabo fuga id nihil quas quis totam. Accusamus assumenda atque commodi culpa cumque eligendi fugiat id illum, laborum neque nesciunt obcaecati quam quidem quisquam recusandae sint soluta veniam. Ab adipisci aperiam aspernatur assumenda at fugit maiores minus natus repellendus voluptate? Aspernatur, commodi dolores ducimus eaque enim et, illum ipsa ipsum molestias nobis odit pariatur perspiciatis recusandae rem repudiandae sed unde. Aut autem blanditiis delectus incidunt inventore minima obcaecati placeat praesentium unde. Atque culpa dolor est exercitationem maiores minus nemo, officia pariatur quo repellendus reprehenderit vel!
                     </div>
                 </div>
             {% endfor %}

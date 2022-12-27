@@ -1,3 +1,5 @@
+@import "app.scss";
+
 body {
     display: flex;
     position: relative;
@@ -6,10 +8,10 @@ body {
 
 .content-under-construction-content {
     position: absolute;
-    background-color: lightgrey;
+    background-color: darken($white, 10%);
     padding: 0.5em 1em;
-    border: 4px solid rgba(173,0,0,1);
-    border-radius: 5px;
+    border: 4px solid $red;
+    border-radius: $border-radius-on-linear-gradient;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +20,7 @@ body {
 p {
     font-size: 0.75em;
     text-transform: capitalize;
-    background: -webkit-linear-gradient(160deg, rgba(29,0,0,1) 0%, rgba(173,0,0,1) 100%);
+    background: -webkit-linear-gradient(160deg, darken($red, 10%) 0%, lighten($red, 10%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -28,5 +30,5 @@ p {
     margin: 0.2em;
     width: 75%;
     height: 5px;
-    background: linear-gradient(160deg, rgba(173,0,0,1) 0%, rgba(29,0,0,1) 100%);
+    background: linear-gradient(160deg, lighten($red, 10%) 0%, darken($red, 10%) 100%);
 }

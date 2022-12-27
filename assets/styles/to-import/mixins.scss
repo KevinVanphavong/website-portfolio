@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@import 'variables';
 
 @mixin title-underline {
   content: "";
@@ -45,15 +45,16 @@
 
 @mixin flash-message {
   position: absolute;
-  z-index: 1000;
+  z-index: 2001;
   display: flex;
   width: 100%;
+  padding: 0 2em;
 }
 
 @mixin flash-content($color) {
   border: 3px solid $color;
-  background-color: lighten($color, 60%);
-  color: darken($color, 20%);
+  background-color: lighten($color, 50%);
+  color: $color;
 }
 
 @mixin btn-submit-form {

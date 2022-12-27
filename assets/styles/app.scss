@@ -1,9 +1,13 @@
+@import "assets/styles/to-import/mixins.scss";
+@import "layout.scss";
+@import "assets/styles/to-import/_navbar.scss";
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Offside', cursive;
-    font-size: 14px;
+    font-size: $text-size;
 }
 
 
@@ -20,14 +24,14 @@ nav {
     left: 10%;
     right: 10%;
     margin: auto;
-    background: linear-gradient(120deg, rgb(70, 70, 70) 50%, rgb(217, 217, 217) 100%);
-    border-radius: 4px;
+    background: linear-gradient(180deg, darken($white, 15%) 50%, darken($grey, 10%) 100%);
+    border-radius: $border-radius-on-linear-gradient;
     padding: 0.2em;
     z-index: 1000;
 }
 
 nav > div {
-    background: linear-gradient(120deg, rgb(108, 108, 108) 20%, rgb(37, 37, 37) 100%);
+    background: linear-gradient(120deg, $grey 20%, $grey-darker 100%);
     border-radius: 2px;
     width: 100%;
     display: flex;
@@ -41,7 +45,7 @@ nav > div > span {
 
 nav > div > a {
     text-decoration: none;
-    color: whitesmoke;
+    color: $white;
 }
 
 
@@ -69,11 +73,11 @@ nav > div > a {
         position: absolute;
         width: 30px;
         height: 30px;
-        background: linear-gradient(120deg, rgb(120 120 120) 20%, rgba(0,0,0,1) 100%);
+        background: linear-gradient(120deg, $grey 20%, $black 100%);
         border-radius: 50%;
         top: 5%;
         right: -15px;
-        color: rgba(243, 243, 243, 0.9);
+        color: rgba($white, 0.9);
         justify-content: center;
         align-items: center;
         cursor: pointer;

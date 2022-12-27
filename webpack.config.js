@@ -30,11 +30,11 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('appJS', './assets/app.js')
-    .addEntry('appCSS', './assets/styles/app.css')
-    .addEntry('homepageCSS', './assets/styles/homepage.css')
-    .addEntry('aboutmeCSS', './assets/styles/aboutme.css')
-    .addEntry('hbostudioCSS', './assets/styles/hbostudio.css')
-    .addEntry('skillsetexperienceCSS', './assets/styles/skillsetexperiences.css')
+    .addEntry('appSCSS', './assets/styles/app.scss')
+    .addEntry('homepageSCSS', './assets/styles/homepage.scss')
+    .addEntry('aboutmeSCSS', './assets/styles/aboutme.scss')
+    .addEntry('hbostudioSCSS', './assets/styles/hbostudio.scss')
+    .addEntry('skillsetexperienceSCSS', './assets/styles/skillsetexperiences.scss')
 
     .addEntry('adminProfileSCSS', './assets/styles/admin/profile.scss')
     .addEntry('adminSkillsetexperienceCSS', './assets/styles/admin/skillsetexperiences.scss')

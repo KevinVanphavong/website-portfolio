@@ -1,0 +1,17 @@
+{% extends "admin/layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('adminSkillsetexperienceCSS') }}
+{% endblock %}
+
+{% block body %}
+    <section class="section-my-skillset-experiences">
+        <h1>My Skillset & Job Experiences</h1>
+            <div class="border-content border-content-edit-experience">
+                <div class="content form-content-edit-experience">
+                    <h2>EDIT WORK EXPERIERNCE</h2>
+                    {{ include('form/form-experience.html.twig') }}
+                </div>
+            </div>
+    </section>
+{% endblock %}

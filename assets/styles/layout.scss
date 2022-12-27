@@ -26,6 +26,11 @@ body {
     @include flash-content($red)
   }
 }
+//.flash-warning {
+//  .flash-content {
+//    @include flash-content($orange)
+//  }
+//}
 
 .flash-content {
   display: flex;

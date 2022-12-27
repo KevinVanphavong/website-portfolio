@@ -45,7 +45,9 @@ class WorkExperienceType extends AbstractType
                 'placeholder' => [
                     'year' => 'Year', 'month' => 'Month', 'day' => 'Day'
                     ],
-                ])
+                'years' => range(date('Y') - 50, date('Y') + 50),
+             ])
+
             ->add('endDate', DateType::class, [
                 'label'          => 'To',
                 'label_attr'     => ['class' => 'experience-form-label'],
@@ -54,6 +56,7 @@ class WorkExperienceType extends AbstractType
                 'placeholder' => [
                     'year' => 'Year', 'month' => 'Month', 'day' => 'Day'
                 ],
+                'years' => range(date('Y') - 50, date('Y') + 50),
             ])
             ->add('country', TextType::class, [
                 'label'          => 'Country',
