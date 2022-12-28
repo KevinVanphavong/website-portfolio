@@ -11,10 +11,12 @@ use App\Form\CategoryExperienceType;
 use App\Form\ProfileType;
 use App\Form\WorkExperienceType;
 use App\Repository\CategoryExperienceRepository;
+use App\Repository\MessageReceivedRepository;
 use App\Repository\ProfileRepository;
 use App\Repository\WorkExperienceRepository;
 use App\Service\ProfileService;
 use App\Service\WorkExperienceService;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,9 +37,23 @@ class AdminController extends AbstractController
     /**
      * @Route("/dashboard", name="admin-dashboard")
      */
-    public function indexDashboard(): Response
-    {
-        return $this->render('admin/dashboard.html.twig');
+    public function indexDashboard(
+        Request $request,
+        ProfileRepository $profileRepository,
+        WorkExperienceRepository $workExperienceRepository,
+        MessageReceivedRepository $inboxRepository
+    ): Response {
+        // A remplacer le profil actuel du compte
+        // $profile => $this->getUser()->getProfile();
+        $profile = $profileRepository->findOneBy(['id' => 1]);
+        $workExperiences = $workExperienceRepository->findBy([], ['startDate' => 'DESC']);
+        $inbox = $inboxRepository->findBy([], ['sendAt' => 'DESC']);
+
+        return $this->render('admin/dashboard.html.twig', [
+            'profile' => $profile,
+            'workExperiences' => $workExperiences,
+            'inbox' => $inbox
+        ]);
     }
 
     /**
@@ -78,8 +94,12 @@ class AdminController extends AbstractController
     /**
      * @Route("/inbox", name="admin-inbox")
      */
-    public function indexInbox(Request $request)
+    public function indexInbox(Request $request, MessageReceivedRepository $messageReceivedRepository)
     {
-        return;
+        $allMessages = $messageReceivedRepository->findBy([], ['sendAt' => 'DESC']);
+
+        return $this->render('admin/inbox.html.twig',[
+            'allMessages' => $allMessages,
+        ]);
     }
 }

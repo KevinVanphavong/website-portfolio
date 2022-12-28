@@ -32,7 +32,6 @@ body {
 
 .profile {
   @include admin-block-content;
-  overflow-y: scroll;
 }
 
 // Les champs du formulaires
@@ -79,6 +78,7 @@ form {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  grid-gap: 0.5em;
 }
 .profile-form-row-birthdate > #profile_birthdate > select {
   width: 100%

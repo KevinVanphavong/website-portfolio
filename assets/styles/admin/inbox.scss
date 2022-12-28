@@ -1,0 +1,87 @@
+@import "app.scss";
+
+body {
+  display: flex;
+  height: 100vh;
+}
+
+.section-inbox {
+  width: 100%;
+  height: 100%;
+  margin: 0 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  grid-gap: 2em;
+}
+
+.section-inbox > h1 {
+  width: fit-content;
+  position: relative;
+  font-size: 2em;
+}
+
+.section-inbox > h1::before {
+  @include title-underline;
+}
+
+.inbox-border {
+  height: 90%;
+  width: 100%;
+  @include admin-border-block-content(180deg)
+}
+
+.inbox {
+  @include admin-block-content;
+  padding: 2em;
+  overflow-y: scroll;
+}
+
+.allMessages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  grid-column-gap: 2em;
+  grid-row-gap: 3em;
+  color: $black;
+}
+
+.message-received {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.5em;
+  padding: 1em;
+  border-radius: $border-radius-on-linear-gradient;
+  height: 100%;
+  width: 45%;
+  color: $white;
+
+  &:nth-child(odd) {
+    background: lighten($grey-darker, 5%);
+  }
+  &:nth-child(even) {
+    background: lighten($grey-darker, 15%);
+  }
+
+  .object-content,
+  .message-content {
+    margin-top: 0.5em;
+    background: $white;
+    color: $black;
+    border-radius: $border-radius-on-linear-gradient;
+    overflow-y: scroll;
+    word-break: break-all;
+  }
+
+  .object-content,
+  .message-content {
+    padding: 0.5em;
+    color: $black;
+    height: 50px;
+  }
+
+  .message-content {
+    height: 200px;
+  }
+}
+

@@ -1,0 +1,97 @@
+@import "app.scss";
+
+// common styles with h1 and main block content under
+body {
+  display: flex;
+}
+
+.main-dashboard {
+  width: 100%;
+  height: 100%;
+  margin: 0 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  grid-gap: 2em;
+}
+
+.main-dashboard > h1 {
+  width: fit-content;
+  position: relative;
+  font-size: 2em;
+}
+
+.main-dashboard > h1::before {
+  @include title-underline;
+}
+// common styles with h1 and main block content under
+
+
+.dashboard-content {
+  color: $black;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  grid-gap: 1em;
+  .section-profile-and-inbox {
+    width: 40%;
+    .block-profile {
+      height: 50%;
+      .profile-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        grid-gap: 0.5em;
+        padding: 1em;
+      }
+    }
+
+    .block-inbox {
+      height: 50%;
+      .inbox-content {
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        grid-gap: 1em;
+        overflow-y: scroll;
+      }
+    }
+  }
+
+  .section-experiences-and-studio {
+    width: 60%;
+    .block-experiences {
+      height: 60%;
+      .experiences-content {
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        grid-gap: 1em;
+        overflow-y: scroll;
+      }
+    }
+    .block-studio {
+      height: 40%;
+    }
+  }
+
+  .section {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 1em;
+    .block {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      background: $section-space-background-color;
+      border-radius: $border-radius-on-linear-gradient;
+      padding: 0.5em;
+      h2 {
+        font-size: calc($h1-title-size - 8px);
+        text-align: center;
+      }
+    }
+  }
+}
+

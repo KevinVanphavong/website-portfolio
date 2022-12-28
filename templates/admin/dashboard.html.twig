@@ -1,0 +1,64 @@
+{% extends "admin/layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('adminDashboardSCSS') }}
+{% endblock %}
+
+{% block body %}
+    <main class="main-dashboard">
+        <h1>Dashboard</h1>
+        <article class="dashboard-content">
+            <section class="section section-profile-and-inbox">
+                <div class="block block-profile">
+                    <h2>Profile</h2>
+                    <div class="profile-content">
+                        <p><b>Firstname</b> : {{ profile.firstname }}</p>
+                        <p><b>Lastname</b> : {{ profile.lastname }}</p>
+                        <p><b>Birthdate</b> : {{ profile.birthdate|date('d M Y') }}</p>
+                        <p><b>Current position</b> : {{ profile.currentPosition }}</p>
+                    </div>
+                </div>
+                <div class="block block-inbox">
+                    <h2>Inbox</h2>
+                    <div class="inbox-content">
+                        {% set index = inbox|length %}
+                        {% if index != 0 %}
+                            {% for message in inbox %}
+                                <div class="message">
+                                    <p><b>{{ '#' ~ index }}</b> - {{ message.sendAt|format_datetime(locale='fr') }}</p>
+                                    <p><b>From</b> : {{ message.sender }}</p>
+                                    <p class="object-content"><b>Ojbect</b> : {{ message.object }}</p>
+                                </div>
+                                {% set index = index-1 %}
+                            {% endfor %}
+                        {% else %}
+                            <p>No messages at the moment</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+            <section class="section section-experiences-and-studio">
+                <div class="block block-experiences">
+                    <h2>Job Experiences</h2>
+                    <div class="experiences-content">
+                        {% set iterator = workExperiences|length %}
+                        {% if iterator != 0 %}
+                            {% for wxp in workExperiences %}
+                                <div class="work-experience">
+                                    <p><b>{{ '#' ~ iterator }}</b> - <u>Category</u> : {{ wxp.categoryExperience.title }}</p>
+                                    <p><b>Title</b> : {{ wxp.title }} - <b>Comapny</b> : {{ wxp.company }}</p>
+                                </div>
+                                {% set iterator = iterator-1 %}
+                            {% endfor %}
+                        {% else %}
+                        <p>No work experiences at the moment</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="block block-studio">
+                    <h2>Hbo Studio</h2>
+                </div>
+            </section>
+        </article>
+    </main>
+{% endblock %}

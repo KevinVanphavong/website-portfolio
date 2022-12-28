@@ -1,0 +1,45 @@
+{% extends "admin/layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('adminInboxSCSS') }}
+{% endblock %}
+
+{% block body %}
+    <section class="section-inbox">
+        <h1>Inbox</h1>
+        <div class="inbox-border">
+            <div class="inbox">
+                <div class="allMessages">
+                    {% set index = allMessages|length %}
+                    {% if index != 0 %}
+                        {% for message in allMessages %}
+                            <div class="message-received">
+                                <p><b>{{ '#' ~ index }}</b> - {{ message.sendAt|format_datetime(locale='fr') }}</p>
+                                <p><b>From</b> : <b>{{ message.sender }}</b></p>
+                                <p>
+                                    <i class="fa-solid fa-envelope"></i> : {{ message.email }}
+                                </p>
+                                <p>
+                                    <i class="fa-solid fa-phone"></i> : {{ message.phoneNumber }}
+                                </p>
+                                <div>
+                                    <b>Ojbect</b> :
+                                    <br>
+                                    <p class="object-content">{{ message.object }}</p>
+                                </div>
+                                <div>
+                                    <b>Content</b>
+                                    <br>
+                                    <p class="message-content">{{ message.content }}</p>
+                                </div>
+                            </div>
+                            {% set index = index-1 %}
+                        {% endfor %}
+                    {% else %}
+                        <p>No messages at the moment</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

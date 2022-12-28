@@ -14,14 +14,11 @@
                 <p>I'm a {{ profile.currentPosition }}</p>
                 <p>
                     {{ profile.quickDescription }}
-{#                    Creating my own studio#}
-{#                    <br>#}
-{#                    As creative studio and brand design#}
                 </p>
             </div>
-            <div class="learn-more-button">
-                <p>Learn more about myself and experiences 👀</p>
-            </div>
+            <a class="learn-more-button" href="{{ path('skillset-experiences') }}">
+                Learn more about myself and experiences 👀
+            </a>
         </div>
         <div class="picture-profile">
             <div class="picture-placeholder">
@@ -40,7 +37,23 @@
             </div>
         </div>
     </section>
+
+    <hr>
     <div class="finger-down-button">
-        <a href="{{ path('skillset-experiences') }}">👇</a>
+        <p>👇</p>
     </div>
+    <section class="contact-me">
+        <h3>For any profesional inquiries and askings, feel free to join me here</h3>
+        {{ form_start(messageReceivedForm) }}
+            {{ form_row(messageReceivedForm.sender) }}
+            <div class="group-email-phone">
+                {{ form_row(messageReceivedForm.email) }}
+                {{ form_row(messageReceivedForm.phoneNumber) }}
+            </div>
+            {{ form_row(messageReceivedForm.object) }}
+            {{ form_row(messageReceivedForm.content) }}
+        {{ form_end(messageReceivedForm) }}
+    </section>
+
+
 {% endblock %}

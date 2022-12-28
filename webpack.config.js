@@ -36,8 +36,10 @@ Encore
     .addEntry('hbostudioSCSS', './assets/styles/hbostudio.scss')
     .addEntry('skillsetexperienceSCSS', './assets/styles/skillsetexperiences.scss')
 
+    .addEntry('adminDashboardSCSS', './assets/styles/admin/dashboard.scss')
     .addEntry('adminProfileSCSS', './assets/styles/admin/profile.scss')
-    .addEntry('adminSkillsetexperienceCSS', './assets/styles/admin/skillsetexperiences.scss')
+    .addEntry('adminSkillsetexperienceSCSS', './assets/styles/admin/skillsetexperiences.scss')
+    .addEntry('adminInboxSCSS', './assets/styles/admin/inbox.scss')
 
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)

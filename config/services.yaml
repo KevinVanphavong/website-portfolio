@@ -6,6 +6,7 @@
 parameters:
     profile_picture: '%kernel.project_dir%/public/uploads/profile-picture'
     experience_image: '%kernel.project_dir%/public/uploads/experience-image'
+    timezone: 'Europe/Paris'
 
 services:
     # default configuration for services in *this* file
