@@ -39,6 +39,59 @@
     </section>
 
     <hr>
+
+    <style>
+        .section-work-experiences-cards {
+            position: relative;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            padding: 5%
+        }
+        .arrow {
+            position: absolute;
+            z-index: 1000;
+            top: 45%;
+        }
+        .arrow-right {
+            right: -5%;
+        }
+        .arrow-left {
+            left: -5%;
+        }
+
+    </style>
+
+    <section class="section-work-experiences">
+        <h2>Work Experiences</h2>
+        <div class="section-work-experiences-cards">
+            <div class="arrow arrow-left">LEFT</div>
+            <div class="arrow arrow-right">RIGHT</div>
+            {% set index = workExperiences|length %}
+            {% for wxp in workExperiences %}
+                <article class="work-experience-card work-experience-card-{{ index }}" data-wxp-card-index="{{ index }}">
+                    <div class="side front-side">
+                        <img src="{{ asset('build/images/dragon-tatoo.png') }}" alt="">
+                        <span class="card-index">{{ '# ' ~ index }}</span>
+                    </div>
+                    <div class="side back-side">
+                        <h3>{{ wxp.categoryExperience.title }}</h3>
+                        <p>{{ wxp.title }}</p>
+                        <b>{{ wxp.company|upper }}</b>
+                        {% if wxp.endDate %}
+                            <p>From {{ wxp.startDate|date('M Y') }}</p>
+                            <p>To {{ wxp.endDate|date('M Y') }}</p>
+                        {% else %}
+                            <p>Still working there</p>
+                        {% endif %}
+                    </div>
+                </article>
+                {% set index = index-1 %}
+            {% endfor %}
+        </div>
+    </section>
+
+    <hr>
+
     <div class="finger-down-button">
         <p>👇</p>
     </div>
@@ -55,5 +108,36 @@
         {{ form_end(messageReceivedForm) }}
     </section>
 
+    <script>
+        let frontSideCards = document.querySelectorAll('.front-side');
+        let backSideCards = document.querySelectorAll('.back-side');
 
+        frontSideCards.forEach(frontSide => {
+            frontSide.addEventListener('click', function () {
+                frontSide.style.transform = 'rotateY(90deg)';
+                setTimeout(function () {
+                    frontSide.style.zIndex = '9'
+                    let backSide = frontSide.nextElementSibling
+                    backSide.style.zIndex = '10'
+                    backSide.style.transform = 'rotateY(0deg)'
+                }, '500')
+            })
+        })
+
+        backSideCards.forEach(backSide => {
+            backSide.addEventListener('click', function () {
+                backSide.style.transform = 'rotateY(90deg)';
+                setTimeout(function () {
+                    backSide.style.zIndex = '9'
+                    let frontSide = backSide.previousElementSibling
+                    frontSide.style.zIndex = '10'
+                    frontSide.style.transform = 'rotateY(0deg)'
+                }, '500')
+            })
+        })
+    </script>
+    <script>
+        let sectionCards = document.querySelector('.section-work-experiences-cards')
+        console.log(sectionCards.offsetWidth);
+    </script>
 {% endblock %}

@@ -3,6 +3,7 @@
 // common styles with h1 and main block content under
 body {
   display: flex;
+  height: 100vh;
 }
 
 .main-dashboard {
@@ -12,7 +13,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  grid-gap: 2em;
 }
 
 .main-dashboard > h1 {
@@ -29,7 +29,7 @@ body {
 
 .dashboard-content {
   color: $black;
-  height: 100%;
+  height: 90%;
   width: 100%;
   display: flex;
   grid-gap: 1em;

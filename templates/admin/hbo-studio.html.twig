@@ -1,0 +1,23 @@
+{% extends "admin/layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('adminHBOStudioSCSS') }}
+{% endblock %}
+
+{% block body %}
+    <section class="section-hbo-studio">
+        <h1>HBO Studio</h1>
+        <div class="hbo-studio-border">
+            <div class="hbo-studio-content">
+                <h2>Add new images for the Studio</h2>
+                {{ form_start(hboForm) }}
+                {{ form_end(hboForm) }}
+                <hr>
+                <h3>All the studio images</h3>
+                <div class="hbo-studio-images">
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -2,7 +2,6 @@
 
 body {
   display: flex;
-  height: 100vh;
 }
 
 .section-inbox {
@@ -25,18 +24,6 @@ body {
   @include title-underline;
 }
 
-.inbox-border {
-  height: 90%;
-  width: 100%;
-  @include admin-border-block-content(180deg)
-}
-
-.inbox {
-  @include admin-block-content;
-  padding: 2em;
-  overflow-y: scroll;
-}
-
 .allMessages {
   display: flex;
   flex-wrap: wrap;
@@ -53,14 +40,14 @@ body {
   padding: 1em;
   border-radius: $border-radius-on-linear-gradient;
   height: 100%;
-  width: 45%;
+  width: 47%;
   color: $white;
 
   &:nth-child(odd) {
-    background: lighten($grey-darker, 5%);
+    background: lighten($grey-darker, 10%);
   }
   &:nth-child(even) {
-    background: lighten($grey-darker, 15%);
+    background: darken($grey, 5%);
   }
 
   .object-content,

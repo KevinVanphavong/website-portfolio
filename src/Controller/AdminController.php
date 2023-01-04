@@ -8,9 +8,11 @@ use App\Entity\ProfilePicture;
 use App\Entity\WorkExperience;
 use App\Entity\WorkExperienceImage;
 use App\Form\CategoryExperienceType;
+use App\Form\HboStudioImageType;
 use App\Form\ProfileType;
 use App\Form\WorkExperienceType;
 use App\Repository\CategoryExperienceRepository;
+use App\Repository\HboStudioImageRepository;
 use App\Repository\MessageReceivedRepository;
 use App\Repository\ProfileRepository;
 use App\Repository\WorkExperienceRepository;
@@ -86,9 +88,23 @@ class AdminController extends AbstractController
     /**
      * @Route("/hbo-studio", name="admin-hbo-studio")
      */
-    public function indexHboStudio(Request $request)
+    public function indexHboStudio(Request $request, HboStudioImageRepository $hboStudioImageRepository)
     {
-        return;
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $hboForm = $this->createForm(HboStudioImageType::class);
+        $hboForm->handleRequest($request);
+
+        if($hboForm->isValid() && $hboForm->isSubmitted()) {
+            $images = $request->request->get('HboStudioImage');
+            dump($images);
+            die();
+        }
+
+        return $this->render('admin/hbo-studio.html.twig', [
+            'hboForm' => $hboForm->createView(),
+            'hboForm' => $hboStudioImageRepository->findBy([], ['createdAt' => 'DESC'])
+        ]);
     }
 
     /**

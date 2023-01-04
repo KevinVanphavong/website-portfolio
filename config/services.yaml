@@ -6,6 +6,7 @@
 parameters:
     profile_picture: '%kernel.project_dir%/public/uploads/profile-picture'
     experience_image: '%kernel.project_dir%/public/uploads/experience-image'
+    hbo_studio_images: '%kernel.project_dir%/public/uploads/hbo-studio/images'
     timezone: 'Europe/Paris'
 
 services:

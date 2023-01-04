@@ -18,19 +18,26 @@ class HomepageController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function indexHomepage(): Response
+    public function indexHomepage(ProfileRepository $profileRepository): Response
     {
-        return $this->render('homepage.html.twig');
+        // A remplacer le profil actuel du compte
+        // $profile => $this->getUser()->getProfile();
+        $profile = $profileRepository->findOneBy(['id' => 1]);
+
+        return $this->render('homepage.html.twig', [
+            'profileInitials' => $profile->getInitials()
+        ]);
     }
 
     /**
      * @Route("/about-me", name="about-me")
      */
-    public function indexAboutMe(Request $request, ProfileRepository $profileRepository): Response
+    public function indexAboutMe(Request $request, ProfileRepository $profileRepository, WorkExperienceRepository $workExperienceRepository): Response
     {
         // A remplacer le profil actuel du compte
         // $profile => $this->getUser()->getProfile();
         $profile = $profileRepository->findOneBy(['id' => 1]);
+        $workExperiences = $workExperienceRepository->findBy([], ['startDate' => 'DESC']);
 
         $messageReceivedForm = $this->createForm(MessageReceivedType::class);
         $messageReceivedForm->handleRequest($request);
@@ -58,6 +65,7 @@ class HomepageController extends AbstractController
 
         return $this->render('about-me.html.twig', [
             'profile' => $profile,
+            'workExperiences' => $workExperiences,
             'messageReceivedForm' => $messageReceivedForm->createView(),
         ]);
     }
@@ -76,7 +84,7 @@ class HomepageController extends AbstractController
     public function indexSkillsetExperiences(WorkExperienceRepository $workExperienceRepository, CategoryExperienceRepository $categoryExperienceRepository): Response
     {
         return $this->render('skillset-experiences.html.twig', [
-            'workExperiences' => $workExperienceRepository->findAll(),
+            'workExperiences' => $workExperienceRepository->findBy([], ['startDate' => 'DESC']),
             'categoryExperiences' => $categoryExperienceRepository->findAll()
         ]);
     }

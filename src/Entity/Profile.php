@@ -64,6 +64,11 @@ class Profile
         return $this->id;
     }
 
+    public function getInitials(): ?string
+    {
+        return (substr($this->getFirstname(), 0, 1) . '.' . substr($this->getLastname(), 0, 1));;
+    }
+
     public function getFirstname(): ?string
     {
         return $this->firstname;

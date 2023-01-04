@@ -7,8 +7,6 @@
 {% block body %}
     <section class="section-inbox">
         <h1>Inbox</h1>
-        <div class="inbox-border">
-            <div class="inbox">
                 <div class="allMessages">
                     {% set index = allMessages|length %}
                     {% if index != 0 %}
@@ -39,7 +37,5 @@
                         <p>No messages at the moment</p>
                     {% endif %}
                 </div>
-            </div>
-        </div>
     </section>
 {% endblock %}

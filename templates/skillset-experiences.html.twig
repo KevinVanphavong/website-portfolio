@@ -5,171 +5,60 @@
 {% endblock %}
 
 {% block body %}
-    <section class="section-work-experiences section-90-top-90-sides">
-        {% for index, wxp in workExperiences %}
-            <div class="work-experience work-experience-{{ index }}">
-                <div class="work-experience-content" data-category-id="{{ wxp.categoryExperience.id }}">
-
-                    <div class="first-infos">
-                        {% if wxp.image %}
-                            <img class="work-experience-image" src="{{ asset('uploads/experience-image/' ~ wxp.image.name) }}" alt="">
-                        {% else %}
-                            <div class="work-experience-image"></div>
-                        {% endif %}
-                        <div class="work-experience-infos">
-                            <p>{{ wxp.title }} as {{ '(' ~ wxp.position ~ ')' }}</p>
-                            <p>{{ wxp.company }}</p>
-                            <p>{{ wxp.country ~ ' - ' ~ wxp.city }}</p>
-                            <p>
-                                From {{ wxp.startDate|date("M Y") }}
-                            <br>
-                                To {{ wxp.endDate|date("M Y") }}
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="second-infos">
-                        <p>
-                            {{ wxp.description }}
-                        </p>
-                    </div>
+    <main class="section-work-experiences">
+        {% set index = workExperiences|length %}
+        {% for wxp in workExperiences %}
+            <article class="work-experience-card work-experience-card-{{ index }}" data-wxp-card-index="{{ index }}">
+                <div class="side front-side">
+                    <img src="{{ asset('build/images/dragon-tatoo.png') }}" alt="">
+                    <span class="card-index">{{ '# ' ~ index }}</span>
                 </div>
-            </div>
+                <div class="side back-side">
+                    <h3>{{ wxp.categoryExperience.title }}</h3>
+                    <p>{{ wxp.title }}</p>
+                    <b>{{ wxp.company|upper }}</b>
+                    {% if wxp.endDate %}
+                        <p>From {{ wxp.startDate|date('M Y') }}</p>
+                        <p>To {{ wxp.endDate|date('M Y') }}</p>
+                    {% else %}
+                        <p>Still working there</p>
+                    {% endif %}
+                </div>
+            </article>
+            {% set index = index-1 %}
         {% endfor %}
+    </main>
 
-        <div class="section-category-titles">
-            {% for category in categoryExperiences %}
-                <h4 class="category-title category-title-{{ category.id }}">{{ category.title|upper }}</h4>
-            {% endfor %}
-        </div>
-        <div class="fake-cards-slider">
-            <div class="button-slider button-slider-left"></div>
-            <div class="button-slider button-slider-right"></div>
-            {% for i in 0..4 %}
-                <div class="fake-card-work-experience fake-card-work-experience-{{ i }}">
-                    <div class="wrapper-content">
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+    <style>
 
-
-
-    </section>
-
+    </style>
     <script>
-        // START - DISPLAY SLIDER SCRIPT
-        function displaySliderScript() {
-            let fakeCards = document.querySelectorAll('.fake-card-work-experience');
+        let frontSideCards = document.querySelectorAll('.front-side');
+        let backSideCards = document.querySelectorAll('.back-side');
 
-            const fakeCardBaseHeight = 5
-            const fakeCardIncrementHeight = 3
-            const fakeCardBaseWidth = 20
-            const fakeCardIncrementWidth = 5
-            const fakeCardBaseZIndex = 100;
-
-            fakeCards.forEach(function(fakeCard, index = 0){
-                fakeCard.style.bottom = fakeCardBaseHeight + (index*fakeCardIncrementHeight) + '%'
-                fakeCard.style.top = fakeCardBaseHeight + (index*fakeCardIncrementHeight) + '%'
-
-                fakeCard.style.right = fakeCardBaseWidth - (index*fakeCardIncrementWidth) + '%'
-                fakeCard.style.left = fakeCardBaseWidth - (index*fakeCardIncrementWidth) + '%'
-
-                fakeCard.style.zIndex = fakeCardBaseZIndex - index;
-                if(index !== 0){
-                    fakeCard.children[0].style.filter = 'blur(4px)';
-                } else {
-                    fakeCard.style.overflow = "scroll";
-                    fakeCard.style.overflowX = "hidden";
-                }
-                index++;
-             })
-
-            function resizeCardExperience() {
-                const cardExperience = document.querySelector('.fake-card-work-experience')
-                if (window.innerWidth < 468) {
-                    cardExperience.style.inset = '5% 0%';
-                }
-            }
-            window.addEventListener('load', resizeCardExperience);
-        }
-        displaySliderScript();
-        // END - DISPLAY SLIDER SCRIPT
-
-        // START - ACTIVATE SLIDER SCRIPT
-        function activateSliderScript() {
-            let firstCardExperience = document.querySelector('.fake-card-work-experience')
-            let allWorkExperiences = document.querySelectorAll('.work-experience');
-
-            const firstSliderNumber = 0;
-            const lastSliderNumber = allWorkExperiences.length - 1;
-            let sliderNumberToChange;
-
-            let buttonSliderRight = document.querySelector('.button-slider-right')
-            let buttonSliderLeft = document.querySelector('.button-slider-left')
-
-            let allCategoryNames = document.querySelectorAll('.category-title');
-
-            sliderNumberToChange = firstSliderNumber;
-            firstCardExperience.innerHTML = allWorkExperiences[sliderNumberToChange].innerHTML
-            displayTheRightCategoryName(allCategoryNames)
-
-            window.addEventListener('keydown', (event) => {
-                if(event.keyCode === 37) {
-                    sliderNumberToChange -= 1
-                } else if (event.keyCode === 39) {
-                    sliderNumberToChange += 1
-                }
-
-                if(sliderNumberToChange > lastSliderNumber){
-                    sliderNumberToChange = firstSliderNumber
-                } else if (sliderNumberToChange < firstSliderNumber) {
-                    sliderNumberToChange = lastSliderNumber
-                }
-                firstCardExperience.innerHTML = allWorkExperiences[sliderNumberToChange].innerHTML
-                displayTheRightCategoryName(allCategoryNames)
+        frontSideCards.forEach(frontSide => {
+            frontSide.addEventListener('click', function () {
+                frontSide.style.transform = 'rotateY(90deg)';
+                setTimeout(function () {
+                    frontSide.style.zIndex = '9'
+                    let backSide = frontSide.nextElementSibling
+                    backSide.style.zIndex = '10'
+                    backSide.style.transform = 'rotateY(0deg)'
+                }, '500')
             })
+        })
 
-            buttonSliderRight.addEventListener('click', function(){
-                sliderNumberToChange += 1
-                if(sliderNumberToChange > lastSliderNumber){
-                    sliderNumberToChange = firstSliderNumber
-                } else if (sliderNumberToChange < firstSliderNumber) {
-                    sliderNumberToChange = lastSliderNumber
-                }
-                firstCardExperience.innerHTML = allWorkExperiences[sliderNumberToChange].innerHTML
-                displayTheRightCategoryName(allCategoryNames)
+        backSideCards.forEach(backSide => {
+            backSide.addEventListener('click', function () {
+                backSide.style.transform = 'rotateY(90deg)';
+                setTimeout(function () {
+                    backSide.style.zIndex = '9'
+                    let frontSide = backSide.previousElementSibling
+                    frontSide.style.zIndex = '10'
+                    frontSide.style.transform = 'rotateY(0deg)'
+                }, '500')
             })
-
-            buttonSliderLeft.addEventListener('click', function(){
-                sliderNumberToChange -= 1
-                if(sliderNumberToChange > lastSliderNumber){
-                    sliderNumberToChange = firstSliderNumber
-                } else if (sliderNumberToChange < firstSliderNumber) {
-                    sliderNumberToChange = lastSliderNumber
-                }
-                firstCardExperience.innerHTML = allWorkExperiences[sliderNumberToChange].innerHTML
-                displayTheRightCategoryName(allCategoryNames)
-            })
-
-
-
-        }
-        activateSliderScript()
-
-        // START - ACTIVATE THE CATEGORY EXPERIENCE NAME
-        function displayTheRightCategoryName(allCategoryNames){
-            let firstWorkExperience = document.querySelector('.fake-card-work-experience > .work-experience-content');
-            console.log(firstWorkExperience.dataset.categoryId);
-            let categoryIdToFind = firstWorkExperience.dataset.categoryId
-            allCategoryNames.forEach(name => {
-                if(name.classList.contains('category-title-' + categoryIdToFind)){
-                    name.style.opacity = 1;
-                } else {
-                    name.style.opacity = 0;
-                }
-            })
-        }
-        // END - ACTIVATE THE CATEGORY EXPERIENCE NAME
+        })
     </script>
+
 {% endblock %}
