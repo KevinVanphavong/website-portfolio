@@ -6,7 +6,10 @@
 
 
 {% block body %}
-    <section class="about-me">
+    <a href="#about-me">
+        <i class="arrow-up fa-solid fa-arrow-up"></i>
+    </a>
+    <section id="about-me" class="about-me">
         <div class="introducing-profile">
             <div class="my-introducing-text">
                 <p>Hello ✌</p>
@@ -16,8 +19,8 @@
                     {{ profile.quickDescription }}
                 </p>
             </div>
-            <a class="learn-more-button" href="{{ path('skillset-experiences') }}">
-                Learn more about myself and experiences 👀
+            <a class="learn-more-button" href="#section-work-experiences-cards">
+                Learn more about myself and experiences <span class="finger-down-button"> 👇</span>
             </a>
         </div>
         <div class="picture-profile">
@@ -31,41 +34,19 @@
                 <a href="https://www.instagram.com/tse_hao/">
                     <img src="{{ asset('build/images/instagram-logo.png') }}" alt="INSTAGRAM" title="https://www.instagram.com/tse_hao/">
                 </a>
-                <a href="#">
+                <a href="#contact-me">
                     <img src="{{ asset('build/images/gmail-logo.png') }}" alt="GMAIL" title="vanphavongk45@gmail.com">
                 </a>
             </div>
         </div>
     </section>
 
-    <hr>
+    <hr id="section-work-experiences-cards">
 
-    <style>
-        .section-work-experiences-cards {
-            position: relative;
-            overflow-x: scroll;
-            overflow-y: hidden;
-            padding: 5%
-        }
-        .arrow {
-            position: absolute;
-            z-index: 1000;
-            top: 45%;
-        }
-        .arrow-right {
-            right: -5%;
-        }
-        .arrow-left {
-            left: -5%;
-        }
-
-    </style>
-
+    {% if workExperiences|length > 0 %}
     <section class="section-work-experiences">
-        <h2>Work Experiences</h2>
+        <h2>Click on them !</h2>
         <div class="section-work-experiences-cards">
-            <div class="arrow arrow-left">LEFT</div>
-            <div class="arrow arrow-right">RIGHT</div>
             {% set index = workExperiences|length %}
             {% for wxp in workExperiences %}
                 <article class="work-experience-card work-experience-card-{{ index }}" data-wxp-card-index="{{ index }}">
@@ -91,11 +72,9 @@
     </section>
 
     <hr>
+    {% endif %}
 
-    <div class="finger-down-button">
-        <p>👇</p>
-    </div>
-    <section class="contact-me">
+    <section id="contact-me" class="contact-me">
         <h3>For any profesional inquiries and askings, feel free to join me here</h3>
         {{ form_start(messageReceivedForm) }}
             {{ form_row(messageReceivedForm.sender) }}
@@ -137,7 +116,18 @@
         })
     </script>
     <script>
-        let sectionCards = document.querySelector('.section-work-experiences-cards')
-        console.log(sectionCards.offsetWidth);
+
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function() {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                navbar.style.top = "2.5%";
+                navbar.style.opacity = "100%";
+            } else {
+                navbar.style.top = "-5%";
+                navbar.style.opacity = "0%";
+            }
+            prevScrollpos = currentScrollPos;
+        }
     </script>
 {% endblock %}

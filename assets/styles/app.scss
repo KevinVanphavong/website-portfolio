@@ -28,6 +28,9 @@ nav {
     border-radius: $border-radius-on-linear-gradient;
     padding: 0.2em;
     z-index: 1000;
+    opacity: 100%;
+    transition: all 0.5s ease;
+    box-shadow: 4px 4px 12px $grey-darker;
 }
 
 nav > div {

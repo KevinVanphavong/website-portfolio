@@ -77,15 +77,4 @@ class HomepageController extends AbstractController
     {
         return $this->render('hbo-studio.html.twig');
     }
-
-    /**
-     * @Route("/skillset-experiences", name="skillset-experiences")
-     */
-    public function indexSkillsetExperiences(WorkExperienceRepository $workExperienceRepository, CategoryExperienceRepository $categoryExperienceRepository): Response
-    {
-        return $this->render('skillset-experiences.html.twig', [
-            'workExperiences' => $workExperienceRepository->findBy([], ['startDate' => 'DESC']),
-            'categoryExperiences' => $categoryExperienceRepository->findAll()
-        ]);
-    }
 }

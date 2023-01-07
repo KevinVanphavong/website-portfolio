@@ -20,15 +20,15 @@
                                 <p>
                                     <i class="fa-solid fa-phone"></i> : {{ message.phoneNumber }}
                                 </p>
-                                <div>
-                                    <b>Ojbect</b> :
-                                    <br>
-                                    <p class="object-content">{{ message.object }}</p>
-                                </div>
-                                <div>
-                                    <b>Content</b>
-                                    <br>
-                                    <p class="message-content">{{ message.content }}</p>
+                                <div class="object-message-grouped-content">
+                                    <div>
+                                        <b>Ojbect :</b>
+                                        <p class="object-content">{{ message.object }}</p>
+                                    </div>
+                                    <div>
+                                        <b>Content :</b>
+                                        <p class="message-content">{{ message.content }}</p>
+                                    </div>
                                 </div>
                             </div>
                             {% set index = index-1 %}
@@ -38,4 +38,15 @@
                     {% endif %}
                 </div>
     </section>
+
+    <script>
+        let messages = document.querySelectorAll('.message-received');
+
+        messages.forEach(message => {
+            message.addEventListener('click', function() {
+                let messageContent = this.querySelector('.object-message-grouped-content')
+                messageContent.classList.toggle('active');
+            })
+        })
+    </script>
 {% endblock %}

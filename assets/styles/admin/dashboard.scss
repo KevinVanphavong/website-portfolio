@@ -43,6 +43,20 @@ body {
         justify-content: space-between;
         grid-gap: 0.5em;
         padding: 1em;
+        .profile-picture > img {
+          border-radius: $border-radius-on-linear-gradient;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          object-position: 0 40%;
+        }
+        .profile-picture {
+          border: 5px solid $white;
+          border-radius: $border-radius-on-linear-gradient;
+          width: 50%;
+          height: 50%;
+          max-height: 200px;
+        }
       }
     }
 

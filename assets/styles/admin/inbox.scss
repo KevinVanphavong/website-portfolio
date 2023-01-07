@@ -28,9 +28,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  grid-column-gap: 2em;
-  grid-row-gap: 3em;
-  color: $black;
+  grid-gap: 1em;
 }
 
 .message-received {
@@ -40,35 +38,45 @@ body {
   padding: 1em;
   border-radius: $border-radius-on-linear-gradient;
   height: 100%;
-  width: 47%;
-  color: $white;
+  width: 100%;
+  color: $black;
+  cursor: pointer;
 
   &:nth-child(odd) {
-    background: lighten($grey-darker, 10%);
+    background: $section-space-background-color;
   }
   &:nth-child(even) {
-    background: darken($grey, 5%);
+    background: darken($section-space-background-color, 12.5%);
   }
 
   .object-content,
   .message-content {
     margin-top: 0.5em;
-    background: $white;
-    color: $black;
     border-radius: $border-radius-on-linear-gradient;
     overflow-y: scroll;
     word-break: break-all;
   }
-
-  .object-content,
-  .message-content {
-    padding: 0.5em;
-    color: $black;
-    height: 50px;
-  }
-
   .message-content {
     height: 200px;
   }
-}
 
+  .object-message-grouped-content {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 1em;
+    overflow: hidden;
+    transition: height 0.5s;
+    height: 0;
+  }
+  .object-message-grouped-content > div {
+    padding: 1em;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  &:hover .object-message-grouped-content,
+  .object-message-grouped-content.active {
+    height: calc(200px + 10em);
+  }
+
+}

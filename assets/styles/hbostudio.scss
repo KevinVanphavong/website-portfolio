@@ -9,16 +9,17 @@ body {
 .content-under-construction-content {
     position: absolute;
     background-color: darken($white, 10%);
-    padding: 0.5em 1em;
+    padding: 1em 1.5em;
     border: 4px solid $red;
-    border-radius: $border-radius-on-linear-gradient;
+    border-radius: calc($border-radius-on-linear-gradient*2);
     display: flex;
     flex-direction: column;
     align-items: center;
+    box-shadow: 4px 4px 4px rgba($black, 0.5);
 }
 
 p {
-    font-size: 0.75em;
+    font-size: 1.5em;
     text-transform: capitalize;
     background: -webkit-linear-gradient(160deg, darken($red, 10%) 0%, lighten($red, 10%) 100%);
     -webkit-background-clip: text;

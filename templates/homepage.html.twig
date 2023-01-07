@@ -17,9 +17,9 @@
         <a href="{{ path('about-me') }}" class="homepage-button homepage-button-children homepage-button-me">
             <p>? ME ?</p>
         </a>
-        <a href="{{ path('skillset-experiences') }}" class="homepage-button homepage-button-children homepage-button-cv">
-            <p>XP</p>
-        </a>
+{#        <a href="{{ path('skillset-experiences') }}" class="homepage-button homepage-button-children homepage-button-cv">#}
+{#            <p>XP</p>#}
+{#        </a>#}
         <a href="{{ path('hbo-studio') }}" class="homepage-button homepage-button-children homepage-button-hbo-studio">
             <p>HBO STUDIO</p>
         </a>
@@ -40,18 +40,15 @@
         var shadowButtonControl = document.querySelector('.shadow-button-control')
         var homepageButtonControl = document.querySelector('.homepage-button-control')
         var homepageButtonMe = document.querySelector('.homepage-button-me')
-        var homepageButtonCv = document.querySelector('.homepage-button-cv')
         var homepageButtonHboStudio = document.querySelector('.homepage-button-hbo-studio')
 
         function buttonStateShown() {
-            homepageButtonMe.style.transform = "translate(-200%, -150%)"
-            homepageButtonCv.style.transform = "translate(0,-250%)"
-            homepageButtonHboStudio.style.transform = "translate(200%, -150%)"
+            homepageButtonMe.style.transform = "translate(-250%, 0%)"
+            homepageButtonHboStudio.style.transform = "translate(250%, 0%)"
         }
 
         function buttonStateHidden() {
             homepageButtonMe.style.transform = "translate(0, 0)"
-            homepageButtonCv.style.transform = "translate(0,0)"
             homepageButtonHboStudio.style.transform = "translate(0, 0)"
         }
 
@@ -75,7 +72,5 @@
         function randomInteger(max) {
             return Math.floor(Math.random() * max);
         }
-
-
     </script>
 {% endblock %}

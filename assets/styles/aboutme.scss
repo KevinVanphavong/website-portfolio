@@ -1,24 +1,34 @@
 @import "app.scss";
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    height: 100%;
     display: flex;
     flex-direction: column;
     position: relative;
-    padding: 10%
+    height: 100%;
+    padding: 0;
+    background: linear-gradient(75deg, $black, $grey 100%);
+}
+
+.arrow-up {
+    position: fixed;
+    z-index: 2000;
+    bottom: 2%;
+    right: 3%;
+    font-size: 2em;
+    padding: 0.8em;
+    background: rgba($white, 0.7);
+    border-radius: 8px;
+    color: rgba($black, 0.8);
 }
 
 .finger-down-button {
-    position: fixed;
-    bottom: 1em;
-    width: 100%;
-    text-align: center;
-    font-size: 1.5em;
+    position: absolute;
+    right: 2%;
     animation: clickOnIt 3s ease 0s infinite normal none;
-}
-
-.finger-down-button > a {
-    text-decoration: none;
 }
 
 @keyframes clickOnIt {
@@ -70,13 +80,18 @@ body {
 // section-about-me
 .about-me,
 .contact-me {
-    width: 100%;
-    height: 100%;
+    height: 100vh;
+    padding: 10%;
     display: flex;
     grid-gap: 4em;
     justify-content: space-between;
     align-items: center;
 }
+
+.about-me {
+    justify-content: center;
+}
+
 
 .introducing-profile {
     display: flex;
@@ -93,12 +108,13 @@ body {
 .learn-more-button {
     border: 2px solid $white;
     border-radius: calc($border-radius-on-linear-gradient*2);
-    padding: 10px;
+    padding: 1em 2em 1em 1em;
     width: fit-content;
     text-decoration: none;
     color: $white;
     background: transparent;
     transition: 0.2s ease-in-out;
+    position: relative;
 }
 
 .learn-more-button:hover {
@@ -147,15 +163,22 @@ body {
 
 /* section work experiences */
 .section-work-experiences {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    padding: 10%;
     h2 {
         font-size: 1.5em;
-        margin: 0 0 5% 0;
     }
 }
 .section-work-experiences-cards {
     display: flex;
     grid-column-gap: 5%;
     justify-content: flex-start;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding: 5%;
 }
 
 .work-experience-card:hover {
@@ -226,8 +249,7 @@ body {
 
 /* hr separator */
 hr {
-    width: 100%;
-    margin: 5%;
+    width: 50%;
     align-self: center;
 }
 
@@ -236,6 +258,7 @@ hr {
      flex-direction: column;
      grid-gap: 1em;
      align-items: flex-start;
+     justify-content: center;
  }
 
 .contact-me > form {
@@ -284,6 +307,7 @@ hr {
     cursor: pointer;
     width: fit-content;
     align-self: center;
+    margin: 0.5em auto 0;
 }
 
 

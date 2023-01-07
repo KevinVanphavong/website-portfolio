@@ -47,7 +47,7 @@ class MessageReceivedType extends AbstractType
                 'row_attr'       => ['class' => 'message-received-form-row']
             ])
             ->add('save', SubmitType::class, [
-                'label'         => 'Save',
+                'label'         => 'Send it',
                 'attr'          => ['class' => 'btn-submit-message-form btn btn-success'],
                 'row_attr'      => ['class' => 'message-received-form-row message-received-form-row-submit-btn'],
             ])

@@ -34,7 +34,6 @@ Encore
     .addEntry('homepageSCSS', './assets/styles/homepage.scss')
     .addEntry('aboutmeSCSS', './assets/styles/aboutme.scss')
     .addEntry('hbostudioSCSS', './assets/styles/hbostudio.scss')
-    .addEntry('skillsetexperienceSCSS', './assets/styles/skillsetexperiences.scss')
 
     .addEntry('adminDashboardSCSS', './assets/styles/admin/dashboard.scss')
     .addEntry('adminProfileSCSS', './assets/styles/admin/profile.scss')
