@@ -1,0 +1,8 @@
+<form method="post" class="form-delete-hbo-image" action="{{ path("delete_hbo_image", {"hboImageId": hboImage.id}) }}" onsubmit="return confirm('You sure you want to delete this image ?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_route" value="{{ app.request.attributes.get('_route') }}">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ hboImage.id) }}">
+    <button class="btn-delete-hbo-image">
+        <i class="fa-solid fa-trash"></i>
+    </button>
+</form>

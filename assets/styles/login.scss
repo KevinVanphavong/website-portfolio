@@ -1,0 +1,67 @@
+@import "app.scss";
+
+body {
+  height: 100vh;
+  padding: 10%;
+  display: flex;
+}
+
+.login-form,
+.login-form > section {
+  display: flex;
+  flex-direction: column;
+  grid-gap: 0.5em;
+}
+
+.login-form {
+  width: 50%;
+  padding: 10%;
+  margin: auto;
+  background: $section-space-background-color;
+  border-radius: $border-radius-on-linear-gradient;
+  color: $black;
+  grid-gap: 2em;
+  justify-content: center;
+}
+
+.login-form > section > input {
+  padding: 0.5em;
+  border: 2px solid $white;
+  border-radius: $border-radius-on-linear-gradient;
+}
+
+.btn-submit-login-form {
+  padding: 0.5em 1em;
+  background: $green;
+  color: $white;
+  border-radius: $border-radius-on-linear-gradient;
+  cursor: pointer;
+  border: none;
+  width: fit-content;
+  align-self: center;
+  &:hover {
+    background: darken($green, 5%);
+    color: lighten($white, 10%);
+  }
+}
+
+
+.already-login-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-gap: 1em;
+  p {
+    font-size: 1.5em;
+  }
+  a {
+    text-decoration: none;
+    color: darkgreen;
+    font-weight: bolder;
+    font-size: 2em;
+    transition: all 0.5s ease;
+  }
+  a:hover {
+    color: darkred;
+  }
+}

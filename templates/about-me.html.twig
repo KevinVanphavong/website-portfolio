@@ -4,7 +4,6 @@
     {{ encore_entry_link_tags('aboutmeSCSS') }}
 {% endblock %}
 
-
 {% block body %}
     <a href="#about-me">
         <i class="arrow-up fa-solid fa-arrow-up"></i>
@@ -13,11 +12,13 @@
         <div class="introducing-profile">
             <div class="my-introducing-text">
                 <p>Hello ✌</p>
-                <p>My name is {{ profile.firstname }}</p>
-                <p>I'm a {{ profile.currentPosition }}</p>
-                <p>
-                    {{ profile.quickDescription }}
-                </p>
+                {% if profile is defined %}
+                    <p>My name is {{ profile.firstname }}</p>
+                    <p>I'm a {{ profile.currentPosition }}</p>
+                    <p>
+                        {{ profile.quickDescription }}
+                    </p>
+                {% endif %}
             </div>
             <a class="learn-more-button" href="#section-work-experiences-cards">
                 Learn more about myself and experiences <span class="finger-down-button"> 👇</span>
@@ -25,7 +26,9 @@
         </div>
         <div class="picture-profile">
             <div class="picture-placeholder">
-                <img src="{{ asset('uploads/profile-picture/' ~  profile.profilePicture.name) }}" alt="">
+                {% if profile.profilePicture.name is defined %}
+                    <img src="{{ asset('uploads/profile-picture/' ~  profile.profilePicture.name) }}" alt="">
+                {% endif %}
             </div>
             <div class="my-social-networks">
                 <a href="https://www.linkedin.com/in/kevin-vanphavong-0899a2108/">

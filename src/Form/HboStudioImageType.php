@@ -16,7 +16,7 @@ class HboStudioImageType extends AbstractType
             ->add('HboStudioImage', FileType::class, [
                 'multiple'      => true,
                 'mapped'        => false,
-                'required'      => false,
+                'required'      => true,
                 'label'         => ' ',
                 'label_attr'    => ['class' => 'hbo-studio-form-label'],
                 'attr'          => ['class' => 'hbo-studio-form-input'],

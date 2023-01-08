@@ -15,28 +15,25 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomepageController extends AbstractController
 {
-    /**
-     * @Route("/", name="homepage")
-     */
+
+    #[Route('/', name: 'homepage')]
     public function indexHomepage(ProfileRepository $profileRepository): Response
     {
         // A remplacer le profil actuel du compte
         // $profile => $this->getUser()->getProfile();
-        $profile = $profileRepository->findOneBy(['id' => 1]);
+        $profile = $profileRepository->findOneBy([]);
 
         return $this->render('homepage.html.twig', [
             'profileInitials' => $profile->getInitials()
         ]);
     }
 
-    /**
-     * @Route("/about-me", name="about-me")
-     */
+    #[Route('/about-me', name: 'about-me')]
     public function indexAboutMe(Request $request, ProfileRepository $profileRepository, WorkExperienceRepository $workExperienceRepository): Response
     {
         // A remplacer le profil actuel du compte
         // $profile => $this->getUser()->getProfile();
-        $profile = $profileRepository->findOneBy(['id' => 1]);
+        $profile = $profileRepository->findOneBy([]);
         $workExperiences = $workExperienceRepository->findBy([], ['startDate' => 'DESC']);
 
         $messageReceivedForm = $this->createForm(MessageReceivedType::class);
@@ -70,9 +67,7 @@ class HomepageController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/hbo-studio", name="hbo-studio")
-     */
+    #[Route('/hbo-studio', name: 'hbo-studio')]
     public function indexHboStudio(): Response
     {
         return $this->render('hbo-studio.html.twig');

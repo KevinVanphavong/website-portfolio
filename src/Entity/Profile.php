@@ -30,22 +30,22 @@ class Profile
     private $lastname;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $birthdate;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $sex;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $currentPosition;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text", nullable=true, nullable=true)
      */
     private $quickDescription;
 
@@ -53,6 +53,11 @@ class Profile
      * @ORM\OneToOne(targetEntity=ProfilePicture::class, mappedBy="profileUser", cascade={"persist", "remove"})
      */
     private $profilePicture;
+
+    /**
+     * @ORM\OneToOne(targetEntity=User::class, mappedBy="profile", cascade={"persist", "remove"})
+     */
+    private $profile;
 
     public function __construct()
     {
@@ -154,6 +159,28 @@ class Profile
         }
 
         $this->profilePicture = $profilePicture;
+
+        return $this;
+    }
+
+    public function getProfile(): ?User
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(?User $profile): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($profile === null && $this->profile !== null) {
+            $this->profile->setProfile(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($profile !== null && $profile->getProfile() !== $this) {
+            $profile->setProfile($this);
+        }
+
+        $this->profile = $profile;
 
         return $this;
     }

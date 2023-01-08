@@ -5,19 +5,53 @@
 {% endblock %}
 
 {% block body %}
-    <section class="section-hbo-studio">
+    <a href="#hbo-studio-images">
+        <i class="arrow-up fa-solid fa-arrow-up"></i>
+    </a>
+    <section class="section-hbo-studio" id="hbo-studio-images">
         <h1>HBO Studio</h1>
         <div class="hbo-studio-border">
             <div class="hbo-studio-content">
                 <h2>Add new images for the Studio</h2>
                 {{ form_start(hboForm) }}
                 {{ form_end(hboForm) }}
-                <hr>
-                <h3>All the studio images</h3>
-                <div class="hbo-studio-images">
 
+                <hr>
+
+                <h2>All the studio images ({{ hboImages|length }})</h2>
+                <div class="hbo-studio-images">
+                     {% if hboImages|length > 0 %}
+                         {% for hboImage in hboImages %}
+                             <div class="content-image">
+                                <img src="{{ asset('uploads/hbo-studio-images/' ~ hboImage.name) }}" alt="">
+                                 {% include 'form/delete_form/d-form-hbo-image.html.twig' %}
+                             </div>
+                         {% endfor %}
+                     {% else %}
+                         <p>There is no images at the moment</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        let trashs = document.querySelectorAll('.fa-trash')
+
+        reduceBrightnessImages(trashs)
+        function reduceBrightnessImages(buttons){
+            buttons.forEach(element => {
+                let image = element.previousElementSibling
+                element.addEventListener('mouseenter', function (){
+                    image.classList.add('active');
+                })
+                element.addEventListener('mouseleave', function (){
+                    image.classList.remove('active');
+                })
+            })
+        }
+
+    </script>
 {% endblock %}

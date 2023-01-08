@@ -19,9 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-/**
- * @Route("admin")
- */
+#[Route('admin')]
 class WorkExperienceController extends AbstractController
 {
     private $workExperienceService;
@@ -31,14 +29,12 @@ class WorkExperienceController extends AbstractController
         $this->workExperienceService = $workExperienceService;
     }
 
-    /**
-     * @Route("/work-experiences", name="admin_work_experiences")
-     */
+    #[Route('/work-experiences', name: 'admin_work_experiences')]
     public function indexWorkExperiences(Request $request, ProfileRepository $profileRepository, WorkExperienceRepository $workExperienceRepository, CategoryExperienceRepository $categoryExperienceRepository): Response
     {
         // A remplacer le profil actuel du compte
         // $profile => $this->getUser()->getProfile();
-        $profile = $profileRepository->findOneBy(['id' => 1]);
+        $profile = $profileRepository->findOneBy([]);
 
         $workExperienceForm = $this->createForm(WorkExperienceType::class);
         $categoryExperienceForm = $this->createForm(CategoryExperienceType::class);
@@ -93,9 +89,9 @@ class WorkExperienceController extends AbstractController
     }
 
     /**
-     * @Route("/work-experiences/edit/{workExperienceId}", name="edit_work_experience")
      * @ParamConverter("workExperience", class="App\Entity\WorkExperience", options={"mapping": {"workExperienceId": "id"}})
      */
+    #[Route('/work-experiences/edit/{workExperienceId}', name: 'edit_work_experience')]
     public function editWorkExperience(Request $request, WorkExperience $workExperience)
     {
         $entityManager = $this->getDoctrine()->getManager();
@@ -118,9 +114,9 @@ class WorkExperienceController extends AbstractController
     }
 
     /**
-     * @Route("/work-experiences/delete/{workExperienceId}", name="delete_work_experience")
      * @ParamConverter("workExperience", class="App\Entity\WorkExperience", options={"mapping": {"workExperienceId": "id"}})
      */
+    #[Route('/work-experiences/delete/{workExperienceId}', name: 'delete_work_experience')]
     public function deleteWorkExperience(Request $request, WorkExperience $workExperience)
     {
         if ($this->isCsrfTokenValid('delete'.$workExperience->getId(), $request->request->get('_token')) &&  $request->request->get('_method') === "DELETE") {
@@ -136,9 +132,9 @@ class WorkExperienceController extends AbstractController
     }
 
     /**
-     * @Route("/category-experiences/delete/{categoryExperienceId}", name="delete_category_experience")
      * @ParamConverter("categoryExperience", class="App\Entity\CategoryExperience", options={"mapping": {"categoryExperienceId": "id"}})
      */
+    #[Route('/category-experiences/delete/{categoryExperienceId}', name: 'delete_category_experience')]
     public function deleteCategoryExperience(Request $request, CategoryExperience $categoryExperience)
     {
         $title = $categoryExperience->getTitle();

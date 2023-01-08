@@ -17,7 +17,9 @@
                         <p><b>Birthdate</b> : {{ profile.birthdate|date('d M Y') }}</p>
                         <p><b>Current position</b> : {{ profile.currentPosition }}</p>
                         <div class="profile-picture">
-                            <img src="{{ asset('uploads/profile-picture/' ~ profile.profilePicture.name) }}" alt="">
+                            {% if profile.profilePicture.name is defined %}
+                                <img src="{{ asset('uploads/profile-picture/' ~ profile.profilePicture.name) }}" alt="">
+                            {% endif %}
                         </div>
                     </div>
                 </div>

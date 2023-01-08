@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\CategoryExperience;
+use App\Entity\HboStudioImage;
 use App\Entity\Profile;
 use App\Entity\ProfilePicture;
 use App\Entity\WorkExperience;
@@ -10,35 +11,33 @@ use App\Entity\WorkExperienceImage;
 use App\Form\CategoryExperienceType;
 use App\Form\HboStudioImageType;
 use App\Form\ProfileType;
-use App\Form\WorkExperienceType;
-use App\Repository\CategoryExperienceRepository;
 use App\Repository\HboStudioImageRepository;
 use App\Repository\MessageReceivedRepository;
 use App\Repository\ProfileRepository;
 use App\Repository\WorkExperienceRepository;
+use App\Service\HboService;
 use App\Service\ProfileService;
-use App\Service\WorkExperienceService;
-use DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("admin")
- */
+#[IsGranted('ROLE_ADMIN_STAR')]
+#[Route('/admin')]
 class AdminController extends AbstractController
 {
-    private $profileService;
+    /**
+     * @var ProfileService
+     */
+    private ProfileService $profileService;
 
     public function __construct(ProfileService $profileService)
     {
         $this->profileService = $profileService;
     }
 
-    /**
-     * @Route("/dashboard", name="admin-dashboard")
-     */
+    #[Route('/dashboard', name: 'admin-dashboard')]
     public function indexDashboard(
         Request $request,
         ProfileRepository $profileRepository,
@@ -47,7 +46,7 @@ class AdminController extends AbstractController
     ): Response {
         // A remplacer le profil actuel du compte
         // $profile => $this->getUser()->getProfile();
-        $profile = $profileRepository->findOneBy(['id' => 1]);
+        $profile = $profileRepository->findOneBy([]);
         $workExperiences = $workExperienceRepository->findBy([], ['startDate' => 'DESC']);
         $inbox = $inboxRepository->findBy([], ['sendAt' => 'DESC']);
 
@@ -58,14 +57,13 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/profile", name="admin-profile")
-     */
+
+    #[Route('/profile', name: 'admin-profile')]
     public function indexProfile(Request $request, ProfileRepository $profileRepository): Response
     {
         // A remplacer le profil actuel du compte
         // $profile => $this->getUser()->getProfile();
-        $profile = $profileRepository->findOneBy(['id' => 1]);
+        $profile = $profileRepository->findOneBy([]);
 
         $entityManager = $this->getDoctrine()->getManager();
 
@@ -85,31 +83,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/hbo-studio", name="admin-hbo-studio")
-     */
-    public function indexHboStudio(Request $request, HboStudioImageRepository $hboStudioImageRepository)
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-
-        $hboForm = $this->createForm(HboStudioImageType::class);
-        $hboForm->handleRequest($request);
-
-        if($hboForm->isValid() && $hboForm->isSubmitted()) {
-            $images = $request->request->get('HboStudioImage');
-            dump($images);
-            die();
-        }
-
-        return $this->render('admin/hbo-studio.html.twig', [
-            'hboForm' => $hboForm->createView(),
-            'hboForm' => $hboStudioImageRepository->findBy([], ['createdAt' => 'DESC'])
-        ]);
-    }
-
-    /**
-     * @Route("/inbox", name="admin-inbox")
-     */
+    #[Route('/inbox', name: 'admin-inbox')]
     public function indexInbox(Request $request, MessageReceivedRepository $messageReceivedRepository)
     {
         $allMessages = $messageReceivedRepository->findBy([], ['sendAt' => 'DESC']);

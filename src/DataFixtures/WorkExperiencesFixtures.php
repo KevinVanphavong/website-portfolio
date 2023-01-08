@@ -11,7 +11,7 @@ class WorkExperiencesFixtures extends Fixture implements DependentFixtureInterfa
 {
     const WORKEXPFIXTURES = [
         [
-            'title' => 'Bachelor degree in Business Development',
+            'title' => '🎓 Bachelor degree in Business Development',
             'company' => 'ESCEM - Excelia',
             'position' => 'student' ,
             'startDate' => '09/01/2014',
@@ -21,7 +21,7 @@ class WorkExperiencesFixtures extends Fixture implements DependentFixtureInterfa
             'description' => ''
         ],
         [
-            'title' => 'Sales professional',
+            'title' => '👔 Sales professional',
             'company' => 'Pum Plastiques',
             'position' => 'intern' ,
             'startDate' => '09/01/2016',
@@ -31,7 +31,7 @@ class WorkExperiencesFixtures extends Fixture implements DependentFixtureInterfa
             'description' => ''
         ],
         [
-            'title' => 'Business Developer',
+            'title' => '👔 Business Developer',
             'company' => 'Bowling World',
             'position' => 'worker' ,
             'startDate' => '09/01/2017',
@@ -41,7 +41,7 @@ class WorkExperiencesFixtures extends Fixture implements DependentFixtureInterfa
             'description' => ''
         ],
         [
-            'title' => 'Degree in Web Development and Web Mobile Development',
+            'title' => '🎓 Degree in Web Development and Web Mobile Development',
             'company' => 'Wild Code School',
             'position' => 'student' ,
             'startDate' => '09/01/2020',
@@ -51,7 +51,7 @@ class WorkExperiencesFixtures extends Fixture implements DependentFixtureInterfa
             'description' => ''
         ],
         [
-            'title' => 'Bachelor Degree in Web & Technologies',
+            'title' => '🎓 Bachelor Degree in Web & Technologies',
             'company' => 'Webtech Institute',
             'position' => 'student' ,
             'startDate' => '09/01/2021',
@@ -61,7 +61,7 @@ class WorkExperiencesFixtures extends Fixture implements DependentFixtureInterfa
             'description' => ''
         ],
         [
-            'title' => 'Master Degree in IT project management',
+            'title' => '👨‍🎓 Master Degree in IT project management',
             'company' => 'IPI School',
             'position' => 'student' ,
             'startDate' => '09/01/2022',

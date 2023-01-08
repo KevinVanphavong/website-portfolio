@@ -1,4 +1,23 @@
 {% block workExperienceForm %}
     {{ form_start(workExperienceForm) }}
+
+    {{ form_row(workExperienceForm.title) }}
+    {{ form_row(workExperienceForm.company) }}
+    {{ form_row(workExperienceForm.position) }}
+    {{ form_row(workExperienceForm.startDate) }}
+    {{ form_row(workExperienceForm.endDate) }}
+    {{ form_row(workExperienceForm.country) }}
+    {{ form_row(workExperienceForm.city) }}
+    {{ form_row(workExperienceForm.description) }}
+    {{ form_row(workExperienceForm.categoryExperience) }}
+    {{ form_row(workExperienceForm.image) }}
+
+    {% if app.request.pathInfo is not same as '/admin/work-experiences' %}
+        {% set requestURI = 'admin_work_experiences' %}
+            <div class="group-button">
+                <a href="{{ path(requestURI) }}" class="button-cancel">Cancel</a>
+                {{ form_row(workExperienceForm.save) }}
+            </div>
+        {% endif %}
     {{ form_end(workExperienceForm) }}
 {% endblock %}
